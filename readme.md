@@ -1,4 +1,4 @@
-# Panzer-Earth-gauge-VB6
+# Panzer-Kill-gauge-VB6
  A FOSS Earth VB6 Widget for Reactos, XP, Win7, 8 and 10+.
  
 The Panzer Earth VB6 gauge is a simple utility displaying a rotating earth in a
@@ -6,14 +6,10 @@ dieselpunk fashion on your desktop. It can be resized and placed anywhere on
 your desktop. It uses minimal resources and helps give your desktop a 
 dieselpunk make-over. 
 
-![earth-small](https://github.com/yereverluvinunclebert/Panzer-Earth-gauge-VB6/assets/2788342/519b21a2-9904-4204-8f96-377d54d74f21)
-
 This widgets functionality is limited as it is just a template for widgets yet
 to come, however, it can be increased in size, animation speed can be changed, 
 opacity/transparency may be set as to the users discretion. The widget can 
 also be made to hide for a pre-determined period.
-
-![menu01](https://github.com/yereverluvinunclebert/Panzer-Earth-gauge-VB6/assets/2788342/47d3a391-ae43-4d63-9633-4fb28e5eae72)
 
 Right-click on the widget to display the function menu, mouse hover over the 
 widget and press CTRL+mousewheel up/down to resize. It works well on Windows XP 
