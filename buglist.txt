@@ -1,0 +1,347 @@
+' This is the buglist - fixed at the top and outstanding below.
+
+' set all controls to default values, comboboxes - done
+' save all control values - done
+' read all control values - done
+' validate all control values - done
+' populate all controls with saved values - done
+' add auto-start to registry - done
+' theme the prefs - done
+' prefs positioned - done
+' reload with the menu - done
+' font changes - make them stick - done
+' tooltips to all controls - done
+' balloontooltips - done
+' globe sizing changes - done
+' add resize on startup - done
+' prefs position saved and restored - done
+' add rotation speed or timer interval using slider - done
+' fade out of the about form, new property and .refresh - done
+' close all the forms and hide the globe on close - done
+' use of the itemdata to read the prefs - done
+' mouse up/down for resizing, new property on the globe - done
+' increase the zoom amount - done
+' chkPreventDragging locking and disabling form_move, new property on the globe - done
+' chkOpacity new property on the globe - done
+' separate the shadow from the ring - done
+' window layering after setting and saving - done
+' window layering into new routine - done
+' apply changes to the globe program - done
+' dblClick must operate with a valid command - done
+' create about tab as per SD dock settings - done
+' add open file file selection button - done
+' group the buttons, find a way of bringing the code together without using control arrays - done
+' add F5 to reload - done
+' new about icon - done
+' additional text to scrollwheel explanation - done
+' when restarting, set opacity to 0 or something, sleep 500 to show the restart has occurred - done
+' additional tasks added during reload/F5 - done
+' capture SHIFT+click using keypress in cfMain, ALT is not possible, it does not register - done
+' screen width and height, get the API to operate correctly - done
+' globe positioning changes to landscape/portrait - done
+' restructure the form closure method to remove delay and a hanging process - done
+' landscape/portrait, timer to detect dynamic changes  - done
+' globe moved, if prefs is hidden, save position dynamically onMouseUp after dragging - done
+' add widget hidden check box to window tab, allowing the hidden flag to be removed - done
+' add Lock Widget menu option, dynamic - done
+' fix about location, centered vertically on screen by making sure that the form is the same size as the about widget and image - done
+' add sounds to menu locking - done
+' F5 to call the widget restart function - done
+' added no. of mins to hide combi box, now hides according to the saved number of minutes - done
+' better automated placement/alignment of buttons and frames - done
+' make the font changing routines private to the prefs form - done
+' if you have resized via mousewheel then save button activated - done
+' use an alternative form for the calc of twipsPerPixel and not panzerEarthPrefs.hdc as we don't want to load the form early - done
+' sort out the positioning of the imagery, the co-ords in the translate command in cwGlobe removed - done
+' analyse form sizing, widget placement on the form and the effects of changing the values - done
+' ensure mainScreen puts the widget back in place where it expects to be, form, widget placement, saving in pixels &c - done
+' calculate the current hlocation in % of the screen and store - done
+' playSound controlled by the sound check box - done
+
+' add mainScreen after prefs change - done
+' move the locking check box to the position pane - done
+' add a switch parameter to allow command line parameters - done
+' single page help screen updated - done
+' check landscape or portrait when populating locked fields - done
+' fix a bug with opacity setting on startup - done
+' indicate which controls are immediate with an asterix - done
+' hiding widget when menu option selected to also cause an auto-click in prefs - done
+' enable ignore mouse, whilst retaining prefs access - done
+' hidden according to aspect mode - done
+' research how to package a VB6 app with RC5 - add a folder BIN and copy the DLLs x 3 into that - done
+
+' add a new property Hidden to the globe to allow it to be made transparent internally - done
+' add a new property WasRotating to the globe to determine if the globe had been previously rotating when hidden - done
+' replace fmain.mainForm.hide and then restarting globe with globeWidget.hidden - done
+' when the form is hiding stop the rotation to reduce CPU usage during hiding phase - done
+' restart the rotation when revealed from hidden - done
+' change the surround distortion and ring position so there is no gap - done
+' new tiny 16x16 icon without white corners - done
+' add timer to periodically check the modification date of the settings - done
+' rubberduck - failed to run after install - reinstalled - done
+
+' first time run - open prefs automatically - done
+' move the prefs into place alongside the widget form - twips and pixels combined! - done
+' validation - test the validations - done
+' initialise the global vars - done
+' check running without settings.ini - done
+' shorten the text in the about - done
+' high contrast theme by default - validation - dark - done
+' Windows serif font chosen by default, choose which - validation - times new roman - done
+
+' prefs placement to the right of the widget was using the widget form.right rather than rightmost visible part - done
+' fix URL bug on all links - done
+' font selection bug due to incorrect initialisation and poor variable coercion by VB6 - done
+' prefsfont settings variable spurious definition - done
+' opacity set in prefs initially fails after hiding - done
+' create a separate batch file that calls the main binary to run the prefs alone - done
+' alter menu option descriptions - done
+' to cater for running the program in 'unhide' mode, saving an unhide setting and exiting - done
+' add code to test for unhide value every 6 seconds - done
+' fix hiding switch - done
+' for a new installation, default settings.ini and creation of folder in users, copying file containing defaults - done
+' sort the APIs - done
+' tidy up, re-structure and remove dead code - done
+' added some topping and tailing of major functions - done
+
+' added menu option to open the HTML help - done
+' create a help.html file - done
+' rubberduck the code - done
+' add centurion light in the package - done
+' capture right click on the about text box as per FCW - done
+' cancelling tooltips also applies to the RC5 tooltip - done
+' create setup2go installer profile - done
+' create setup2go installer for testing 0.1.0 - done
+' test on e5400 laptop, step by step, just binary,copied over without settings and BIN folder, no registering DLLs - done
+' create a help.chm file - done
+' tested on Harry's m/c, strangely DLLs needed registering - done
+
+' create A kofi account for the donation button - done
+' copy the paypal to a Kofi link, merge the two separate menus to one shared clickEvent - done
+' merge the two separate licence menu options to one shared clickEvent - done
+' merge the two separate support menu options to one shared clickEvent - done
+' modify the donate menu and button options, remove amazon - done
+' help links to point to CHM - done
+
+' added 'regfree' module to RC5 to test - done
+' build new test installer using setup2go - done
+' test install and run on win 10 64bit - done
+' Document RC5 usage - done
+' Document structure - done
+' test install and run on win 7 64bit - done
+' test on win 11 laptop - done
+' test on win 10 blank install, no RC5 at all - study PC - done
+
+' licence uses default font - done
+' test automatic themeing as per FCW, check - done
+
+' create a RES entry for Krool's CCRSlider.ocx - done
+' test on win 10 blank install, no RC5 at all - Harry - done
+' determine how to resize the images in the buttons  - done
+' fix the control positions on the general & config tabs - done
+' replace the two general picboxes with image boxes - done
+' replace the two general picboxes with image boxes - done
+
+' add autoscaling as per the generator tool and test - wip
+' replace the two config picboxes with image boxes and test - done
+
+' replace the two fonts picboxes with image boxes and test - done
+' replace the two sounds picboxes with image boxes and test - done
+' add a checkbox to allow resizing on the about page - done
+' prefs - prevent resizing below a certain amount - done
+' prefs when the resizing checkbox is off, unload and reload the form to restore the default positions and sizes - done
+
+' replace the two position picboxes with image boxes and test - done
+' replace the two development picboxes with image boxes and test - done
+' replace the two window picboxes with image boxes and test - done
+' replace the two about picboxes with image boxes and test - done
+' add switch to light theme buttons when clicked into light mode - done
+' modify the help with anti-virus concerns - done
+' test the icons with a bigger image, will require reloading at form sizing intervals - done
+' fix bug with attempting to resize form when minimised - done
+' additional check to reveal a minimised prefs when called from the menu - done
+' prefs saved position add vars, read and store - done
+' prefs saved position, create timer to periodically save and store current position - done
+' prefs saved position, restore on re-load - done
+' modify the help with resizing capability - done
+' find and register setup2go 1.9.11 username and password and test - done
+' add the position save and restore to the resizing checkbox toggled values - done
+
+' minimised, menu prefs - appears in the wrong place - done
+' when vbMinimised the top, left form value is -48000 so handle that when saving the current position via timer - done
+' under windows 10+ the internal window calcs are all wrong, we add another 75 twips or the bottom of the form is cut off - done
+' sort the API and var declarations, neat and tidy - done
+
+' preserve prefs aspect ratio when dragging - done
+' update the help with uninstall and a/v information - done
+
+' sort the visual aspect of the form calculating size and width of the form borders in Win10+ - wip
+
+' created a larger version of the old YWidget 'general' switch image - done
+' created a completely new small version of the old YWidget 'general' switch image - done
+
+' created a larger version of the 'clipboard' image - done
+' created a completely new small version of the 'clipboard' image - done
+' created a larger version of the 'fonts' image - done
+' created a completely new small version of the 'fonts' image - done
+
+' find larger images of the various icons - done
+' update the HTML re: resizing, text and about page image - done
+' update the HTML help with information on the remaining menu options not yet documented - done
+' resize the general dark images to suit widths of 730, 834, 940, 1010 placed in images folder - done
+' resize the config dark images to suit widths of 730, 834, 940, 1010 placed in images folder - done
+' resize the fonts dark images to suit widths of 730, 834, 940, 1010 placed in images folder - done
+' resize the sound dark images to suit widths of 730, 834, 940, 1010 placed in images folder - done
+' resize the development dark images to suit widths of 730, 834, 940, 1010 placed in images folder - done
+' resize the windows dark images to suit widths of 730, 834, 940, 1010 placed in images folder - done
+' add code to resize the icon images at the top dynamically to suit 5 different sizes of resized form - done
+' changed the donate button from amazon to kofi - done
+
+' resize the position images to suit widths of 730, 834, 940, 1010 placed in images folder - done
+' resize about images to suit widths of 730, 834, 940, 1010 place in images folder - done
+
+' all property get and let error labels named correctly - done
+' about page fade in as per fade out - done
+' add code from Corso on vbforums re: changing the tooltip text font on the RC5 form - done
+' add text box to display the resizable font only when the form is resiable - done
+' fix clicked elements being the wrong size - done
+
+' fix vertical sizing at the bottom of the form - done
+' create new 40x40px images as shadows, config and about - done
+
+' add code to handle the light images during resizing - done
+' resize the config light images to suit widths of 730, 834, 940, 1010 placed in images folder - done
+' resize the general light images to suit widths of 730, 834, 940, 1010 placed in images folder - done
+' resize the fonts light images to suit widths of 730, 834, 940, 1010 placed in images folder - done
+' resize the sound light images to suit widths of 730, 834, 940, 1010 placed in images folder - done
+' correct a bug with the general tab not clicking correctly with incorrect params - done
+
+' resize the position light images to suit widths of 730, 834, 940, 1010 placed in images folder - done
+' resize the development light images to suit widths of 730, 834, 940, 1010 placed in images folder - done
+' resize the windows light images to suit widths of 730, 834, 940, 1010 placed in images folder - done
+' resize the about light images to suit widths of 730, 834, 940, 1010 placed in images folder - done
+' tooltips on recent controls added setting - done
+' fix the about light clicked image - done
+' change code to display only the one 600 clicked image for dark and light - done
+' place the icon image selection code into a common routine - done
+' General & sounds dark clicked images - done
+' tidy the development images folder - done
+' add a readme.txt to the images folder - done
+' add the multi-sized images to the setup2go .s2g file - done
+' update the CHM with the new resizing file changes - done
+' update ver 0.1.0 candidate folder - done
+' create new setup2go and test - done
+' save setup2go site username and password - done
+
+' regfree krool ocx - research, the current method of a RES entry should be sufficient - done
+' document Krool's CCR slider usage in development, registration - done
+' document the setup and HTML/CHM creation - done
+' sort the code folder prior to exporting to github - done
+
+' after a reload the about does not function, added a boolean check on the RC5 message pump - done
+' test preloading the images into a Krool's imagelist - all the images have to be the same custom size, no good
+' +------> we could use multiple imageLists for each size but that's a pain, especially new, larger additional images - done
+' think about reading the similarly sized .ico images from a multiple embedded icon using GDI+ the images would still need to be resized dynamically - done
+' test on win 11 blank install, no RC5 at all - Red's machine without Avast or similar - done
+
+' added a cairoForms count instread of the restart flag, prevents message pump being plugged - done
+' created a common form unload routine use by both reload and exit - done
+' created a mainRoutine called by sub main() to allow it to be called by any function, you cannot run sub main() at will - done
+' sorted some declarations to revert to private - done
+
+' create github repository area - done
+' update github source area - done
+' version 0.1.00 - release on github as both a setup.exe and as code - done
+
+' create link to github for the update button on the about page - done
+' create readme.md file for github - done
+' test on win 11 - where RC5 has been already installed, Avast triggers but all good - done
+' test on Linux with WINE blank install on desktop - done
+
+' test on Linux with WINE blank install on laptop - done
+
+' create good landing pages for each link in the sub menu - done
+
+' added link to github on the development prefs - done
+' debug OFF on the dev prefs now shows an example vbp location - done
+
+' add showInTaskbar option in prefs, with associated vars, reading/writing &c - done
+' swapped the acripting.fileSystemObject code from fFileExists for OpenFile API avoiding Wine error - done
+' swapped the acripting.fileSystemObject code from fFileExists for PathIsDirectoryAPI avoiding Wine error - done
+
+' test on win 7 32bit - study 2nd PC - wip 
+' test on win 10 64bit - study 1st  PC - wip
+
+' -oOo-
+
+' Tasks yet to do to complete 0.1.0
+' =================================
+
+' test on win XP 32bit blank install, no RC5 at all
+' test on ReactOS 32bit blank install, no RC5 at all
+
+' document showInTaskbar new option
+
+' build new CHM containing valid links
+' build new setup.exe containing valid links
+
+' add a debug form and debug commands
+
+' get current monitor? Add code to position the various forms on multiple monitors.
+
+' -oOo-
+
+' Tasks yet to do in later versions.
+' ==================================
+
+' upload the code (no setup.exe) to the VBforums codebank
+
+' lightquick - resurrect
+
+' Deviantart for journal only. Test with rocketdock Part III HTML, create the journal blog using NVU as per the saved DA journal pt II, will be usable elsewhere.
+
+' softpedia
+
+' add pin 'widget' layer as a trial with a function, change of image and a sound, size, opacity properties that match the globe
+' add logic to each of the graphic controls - WIP
+
+' Problems Widget layers:
+
+' When you have multiple widgets, one for each layer that needs to act as a control,
+' the topmost layer takes all the clicks even if the layer has transparency. It does
+' not pass it down to the widget below. Each layer is a virtual rectangular layer
+' that acts as if it is fully opaque and not transparent at all. ie. Clicks don't
+' fall through transparency to the layer below as I am accustomed to with YWE and Xw.
+
+' Problems W_HitTest regions:
+
+' Using RC widgets, you can add a W_HitTest function that matches a bordered region
+' such as an arc that forms a full circle or an ellipse/rectangle &c. It will test 
+' successfully for a mouse event if you do this and also remember to set:
+'              W.ImplementsHitTest = True.
+'
+' However, the pain of having to draw a region for every area that needs to be
+' active using ellipses, arcs or rectangles to respond to a hittest is primitive 
+' and worse than that, would be painful to set up.
+'
+' In any case, that is not possible, the trouble is, a hitTest will ONLY respond to
+' mouse events within that single defined region. All other mouse interactions 
+' outside the area are ignored. That's useless to a program that needs multiple
+' areas to respond to. You cannot set up multiple hitTest areas to respond to 
+' hit events.
+
+' The standard mouseDown can report X and Y positions but you would have to test
+' the values manually for every layer/area. Not practical.
+
+' OUTCOME:
+
+' RC5 is not currently suitable for creating desktop programs emulating Y widgets
+' that need to have interacting regions. It is only suitable for clocks or for
+' programs that can be controlled via menus and complex preferences.
+'
+' To overcome this limitation I would have to create a RC widget class for 
+' each item that needs to respond to user interaction. Each would be a virtual 
+' rectangle acting as if it was actually opaque. The rectangles cannot overlap.
+' it might be worth doing for one or two controls but for a Ywidget equivalent
+' with multiple interacting regions it is completely unsuitable.
+
