@@ -1,7 +1,8 @@
 # Panzer-Kill-gauge-VB6
- A FOSS Earth VB6 Widget for Reactos, XP, Win7, 8 and 10+.
+
+A FOSS Kill Gauge VB6 Widget for Reactos, XP, Win7, 8 and 10+.
  
-The Panzer Earth VB6 gauge is a simple utility displaying a rotating earth in a
+The Panzer Kill Gauge VB6 gauge is a simple utility displaying a process kill Gauge in a
 dieselpunk fashion on your desktop. It can be resized and placed anywhere on 
 your desktop. It uses minimal resources and helps give your desktop a 
 dieselpunk make-over. 
@@ -15,7 +16,7 @@ Right-click on the widget to display the function menu, mouse hover over the
 widget and press CTRL+mousewheel up/down to resize. It works well on Windows XP 
 to Windows 11.
 
-The Panzer Earth VB6 gauge is Beta-grade software, under development, not yet 
+The Panzer Kill Gauge VB6 gauge is Alpha-grade software, under development, not yet 
 ready to use on a production system - use at your own risk.
 
 This version was developed on Windows 7 using 32 bit VisualBasic 6 as a FOSS 
@@ -78,9 +79,9 @@ Dependencies:
 
 A windows-alike o/s such as Windows XP, 7-11 or Apple Mac OSX 11.   
 
-Requires a PzEarth folder in C:\Users\<user>\AppData\Roaming\ 
-eg: C:\Users\<user>\AppData\Roaming\PzEarth
-Requires a settings.ini file to exist in C:\Users\<user>\AppData\Roaming\PzEarth
+Requires a PzKill Gauge folder in C:\Users\<user>\AppData\Roaming\ 
+eg: C:\Users\<user>\AppData\Roaming\PzKill Gauge
+Requires a settings.ini file to exist in C:\Users\<user>\AppData\Roaming\PzKill Gauge
 The above will be created automatically by the compiled program when run for the 
 first time.
 
@@ -91,7 +92,7 @@ in mscomctl.ocx. The slider control OCX file is shipped with this package.
 * CCRSlider.ocx
 
 This OCX will reside in the program folder. The program reference to this OCX is 
-contained within the supplied resource file Panzer Earth Gauge.RES. It is 
+contained within the supplied resource file Panzer Kill Gauge Gauge.RES. It is 
 compiled into the binary.
 
 * OLEGuids.tlb
@@ -124,7 +125,7 @@ referenced using modRC5regfree.bas which is compiled into the binary.
 * SETUP.EXE - The program is currently distributed using setup2go, a very useful 
 and comprehensive installer program that builds a .exe installer. Youll have to 
 find a copy of setup2go on the web as it is now abandonware. Contact me
-directly for a copy. The file "install PzEarth 0.1.0.s2g" is the configuration 
+directly for a copy. The file "install PzKill Gauge 0.1.0.s2g" is the configuration 
 file for setup2go. When you build it will report any errors in the build.
 
 * HELP.CHM - the program documentation is built using the NVU HTML editor and 

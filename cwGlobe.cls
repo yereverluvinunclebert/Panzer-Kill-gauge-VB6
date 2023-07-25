@@ -96,7 +96,7 @@ Private Sub Class_Initialize()
     prefsxo = 36: prefsyo = 516
     helpButtonxo = 500: helpButtonyo = 516
     tickSwitchxo = 500: tickSwitchyo = 59
-    killButtonxo = 20: killButtonyo = 27
+    killButtonxo = 20: killButtonyo = 30
     
     killButtonCounter = 1
       

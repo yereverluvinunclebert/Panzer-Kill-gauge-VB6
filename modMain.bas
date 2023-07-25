@@ -457,8 +457,6 @@ Private Sub addImagesToImageList()
 
     Cairo.ImageList.AddImage "KillButton", App.Path & "\Resources\images\KillButton.png"
 
-    
-    Cairo.ImageList.AddImage "Ring", App.Path & "\Resources\images\Ring.png", 545, 545
     Cairo.ImageList.AddImage "Glow", App.Path & "\Resources\images\Glow.png"
     Cairo.ImageList.AddImage "bigReflection", App.Path & "\Resources\images\bigReflection.png"
     Cairo.ImageList.AddImage "windowReflection", App.Path & "\Resources\images\windowReflection.png"
