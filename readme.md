@@ -10,7 +10,7 @@ dieselpunk make-over.
 I use it to kill a wayward process. I used to run a lot of Yahoo Widgets and 
 occasionally the Konfabulator engine would get itself in a twist and start 
 continually dying/reloading. I had this exact widget on my desktop (written 
-in MS Jscript for the Xwidget engine) and whenever YWE did a funny I would 
+in MS Jscript for the Xwidget engine) and whenever YWE did a 'funny' I would 
 dblClick on the Kill button and YWE would die. When you are developing it is 
 not unsusual to create a rogue program that needs to be killed regularly. Use 
 this tool to do it.
