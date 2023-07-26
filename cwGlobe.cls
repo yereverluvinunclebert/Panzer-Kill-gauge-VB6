@@ -19,8 +19,6 @@ Attribute VB_Exposed = False
 '---------------------------------------------------------------------------------------
 
 Option Explicit
- 
-
 
 Private ringxo As Integer
 Private ringyo As Integer
