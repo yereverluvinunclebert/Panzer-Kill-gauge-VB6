@@ -7,8 +7,6 @@ dieselpunk fashion on your desktop. It can be resized and placed anywhere on
 your desktop. It uses minimal resources and helps give your desktop a 
 dieselpunk make-over. 
 
-![panzer-kill-help-750](https://github.com/yereverluvinunclebert/Panzer-Kill-gauge-VB6/assets/2788342/11505f09-61ff-48c9-9627-ed10fa7975ef)
-
 I use it to kill a wayward process. I used to run a lot of Yahoo Widgets and 
 occasionally the Konfabulator engine would get itself in a twist and start 
 continually dying/reloading. I had this exact widget on my desktop (written 
@@ -16,6 +14,8 @@ in MS Jscript for the Xwidget engine) and whenever YWE did a funny I would
 dblClick on the Kill button and YWE would die. When you are developing it is 
 not unsusual to create a rogue program that needs to be killed regularly. Use 
 this tool to do it.
+
+![killButtonWidget](https://github.com/yereverluvinunclebert/Panzer-Kill-gauge-VB6/assets/2788342/0f2a883d-87b1-474d-a5ed-a11129d6d231)
 
 In amomgst the code is a binary that you will be able to use to install the 
 desktop widget. It is SETUP.EXE, when the program is ready I will create this 
@@ -27,6 +27,8 @@ This widgets UI functionality is limited as I am using my simple template for
 widgets yet to come. However, it can be increased in size, opacity/transparency 
 may be set as to the users discretion. The widget can also be made to hide for 
 a pre-determined period.
+
+![panzer-kill-help-750](https://github.com/yereverluvinunclebert/Panzer-Kill-gauge-VB6/assets/2788342/11505f09-61ff-48c9-9627-ed10fa7975ef)
 
 Right-click on the widget to display the function menu, mouse hover over the 
 widget and press CTRL+mousewheel up/down to resize. It works well on Windows XP 
