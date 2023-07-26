@@ -15,7 +15,7 @@ dblClick on the Kill button and YWE would die. When you are developing it is
 not unsusual to create a rogue program that needs to be killed regularly. Use 
 this tool to do it.
 
-![killButtonWidget](https://github.com/yereverluvinunclebert/Panzer-Kill-gauge-VB6/assets/2788342/0f2a883d-87b1-474d-a5ed-a11129d6d231)
+![killButtonWidget](https://github.com/yereverluvinunclebert/Panzer-Kill-gauge-VB6/assets/2788342/a2110157-3ff9-4d7e-a0e5-fc7b079e4647)
 
 In amomgst the code is a binary that you will be able to use to install the 
 desktop widget. It is SETUP.EXE, when the program is ready I will create this 
