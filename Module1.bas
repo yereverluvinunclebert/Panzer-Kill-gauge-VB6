@@ -2175,12 +2175,15 @@ Public Function checkAndKill(ByRef NameProcess As String, ByVal checkForFolder A
     On Error GoTo checkAndKill_Error
     'If debugflg = 1 Then debugLog "%checkAndKill"
 
+    checkAndKill = False
     MyProcess = GetCurrentProcessId()
     
     If NameProcess <> vbNullString Then
           AppCount = 0
           
           binaryName = getFileNameFromPath(NameProcess)
+          If binaryName = vbNullString Then Exit Function ' catchall to prevent closure of unknown processes if the name is malformed
+          
           folderName = getFolderNameFromPath(NameProcess)
           
           uProcess.dwSize = Len(uProcess)
@@ -2191,8 +2194,6 @@ Public Function checkAndKill(ByRef NameProcess As String, ByVal checkForFolder A
           Do
             i = InStr(1, uProcess.szexeFile, Chr(0))
             SzExename = LCase$(Left$(uProcess.szexeFile, i - 1))
-            'WinDirEnv = Environ("Windir") + "\"
-            'WinDirEnv = LCase$(WinDirEnv)
 
             If Right$(SzExename, Len(binaryName)) = LCase$(binaryName) Then
 
@@ -2248,7 +2249,7 @@ Public Function getFileNameFromPath(ByRef strFullPath As String) As String
       
    ' returns the remainder of the path from the final backslash which can be a file or a folder
    If Not fFExists(strFullPath) Then ' tests to see if a file or a folder of the same name in the same location
-        getFileNameFromPath = ""    ' if a file does not exist then what remains must be a folder
+        getFileNameFromPath = strFullPath   ' if a file does not exist then what remains must be a folder or just a binary name without a folder
         Exit Function               ' if a file does exist get its name below
    End If
    getFileNameFromPath = Right$(strFullPath, Len(strFullPath) - InStrRev(strFullPath, "\"))
