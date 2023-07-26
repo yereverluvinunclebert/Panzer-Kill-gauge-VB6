@@ -100,7 +100,8 @@ Public Sub BodyForm_DblClick()
     Else
         answer = MsgBox("Are you sure you want to kill this process? " & vbCr & "    " & PzEDblClickCommand & vbCr & " Do you wish to proceed? ", vbExclamation + vbYesNo)
         If answer = vbYes Then
-            Call ShellExecute(fMain.BodyForm.hwnd, "Open", PzEDblClickCommand, vbNullString, App.Path, 1)
+             checkAndKill PzEDblClickCommand, False, False
+            'Call ShellExecute(fMain.BodyForm.hwnd, "Open", PzEDblClickCommand, vbNullString, App.Path, 1)
         End If
     End If
 

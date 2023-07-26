@@ -247,6 +247,47 @@ Private Declare Function CoTaskMemFree Lib "ole32.dll" (lp As Any) As Long
 Private Declare Function SendMessage Lib "user32" Alias "SendMessageA" (ByVal hwnd As Long, ByVal wMsg As Long, ByVal wParam As Long, lParam As Any) As Long
 '------------------------------------------------------ ENDS
 
+' APIs and variables for querying processes START
+Type PROCESSENTRY32
+    dwSize As Long
+    cntUsage As Long
+    th32ProcessID As Long
+    th32DefaultHeapID As Long
+    th32ModuleID As Long
+    cntThreads As Long
+    th32ParentProcessID As Long
+    pcPriClassBase As Long
+    dwFlags As Long
+    szexeFile As String * 260
+End Type
+
+Private Const PROCESS_ALL_ACCESS = &H1F0FFF
+Private Const TH32CS_SNAPPROCESS As Long = 2&
+Private uProcess   As PROCESSENTRY32
+Private hSnapshot As Long
+
+Private Declare Function OpenProcess Lib "kernel32.dll" (ByVal dwDesiredAccess As Long, ByVal blnheritHandle As Long, ByVal dwAppProcessId As Long) As Long
+Private Declare Function ProcessFirst Lib "kernel32.dll" Alias "Process32First" (ByVal hSnapshot As Long, ByRef uProcess As PROCESSENTRY32) As Long
+Private Declare Function ProcessNext Lib "kernel32.dll" Alias "Process32Next" (ByVal hSnapshot As Long, ByRef uProcess As PROCESSENTRY32) As Long
+Private Declare Function CreateToolhelpSnapshot Lib "kernel32.dll" (ByVal lFlags As Long, ByRef lProcessID As Long) As Long ' Alias "CreateToolhelp32Snapshot"
+Private Declare Function CreateToolhelp32Snapshot Lib "kernel32" (ByVal lFlags As Long, ByVal lProcessID As Long) As Long
+Private Declare Function TerminateProcess Lib "kernel32.dll" (ByVal ApphProcess As Long, ByVal uExitCode As Long) As Long
+Private Declare Function CloseHandle Lib "kernel32.dll" (ByVal hObject As Long) As Long
+Private Declare Function GetCurrentProcess Lib "kernel32" () As Long
+Private Declare Function GetCurrentProcessId Lib "kernel32" () As Long
+' APIs for querying processes END
+
+' APIs and variables for querying running processes' paths START
+Private Const PROCESS_QUERY_INFORMATION As Long = &H400
+Private Const PROCESS_VM_READ As Long = (&H10)
+Private Const API_NULL As Long = 0
+
+Private Declare Function GetProcessImageFileName Lib "psapi.dll" Alias "GetProcessImageFileNameA" (ByVal hProcess As Long, ByVal lpImageFileName As String, ByVal nSize As Long) As Long
+' APIs and variables for querying running processes' paths ENDS
+
+Private lstDevices(1, 25) As String
+Private lstDevicesListCount As Integer
+Public sAllDrives As String
 
 'Private Declare Function GetWindowRect Lib "user32.dll" (ByVal hwnd As Long, ByVal lpRect As RECT) As Long
 'Private Declare Function GetClientRect Lib "user32.dll" (ByVal hwnd As Long, ByVal lpRect As RECT) As Long
@@ -2103,3 +2144,269 @@ settingsTimer_Timer_Error:
 End Sub
 
 
+
+
+'---------------------------------------------------------------------------------------
+' Procedure : checkAndKill
+' Author    : beededea
+' Date      : 21/09/2019
+' Purpose   : Find and kill any given process name
+'           : This routine is an analog of checkAndKillPutWindowBehind. It is more or less identical and you should keep them in synch.
+'             This version does NOT have calls to routines that require additional API calls
+'             I could have used compile time references (#) to bypass these but it seemed more appropriate to create
+'             separate copy for DockSettings and Enhance Icon Settings to run that it would not share with the other utilities.
+'---------------------------------------------------------------------------------------
+'
+Public Function checkAndKill(ByRef NameProcess As String, ByVal checkForFolder As Boolean, ByVal confirmEachProcessKill As Boolean) As Boolean
+
+    ' variables declared
+    Dim AppCount As Integer: AppCount = 0
+    Dim RProcessFound As Long: RProcessFound = 0
+    Dim SzExename As String: SzExename = vbNullString
+    Dim MyProcess As Long: MyProcess = 0
+    Dim i As Integer: i = 0
+    Dim binaryName As String: binaryName = vbNullString
+    Dim folderName As String: folderName = vbNullString
+    Dim procId As Long: procId = 0
+    Dim runningProcessFolder As String: runningProcessFolder = vbNullString
+    Dim processToKill As Long: processToKill = 0
+    Dim ExitCode As Long: ExitCode = 0
+    
+    On Error GoTo checkAndKill_Error
+    'If debugflg = 1 Then debugLog "%checkAndKill"
+
+    MyProcess = GetCurrentProcessId()
+    
+    If NameProcess <> vbNullString Then
+          AppCount = 0
+          
+          binaryName = getFileNameFromPath(NameProcess)
+          folderName = getFolderNameFromPath(NameProcess)
+          
+          uProcess.dwSize = Len(uProcess)
+          hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0&)
+
+          'hSnapshot = CreateToolhelpSnapshot(TH32CS_SNAPPROCESS, 0&)
+          RProcessFound = ProcessFirst(hSnapshot, uProcess)
+          Do
+            i = InStr(1, uProcess.szexeFile, Chr(0))
+            SzExename = LCase$(Left$(uProcess.szexeFile, i - 1))
+            'WinDirEnv = Environ("Windir") + "\"
+            'WinDirEnv = LCase$(WinDirEnv)
+
+            If Right$(SzExename, Len(binaryName)) = LCase$(binaryName) Then
+
+                    AppCount = AppCount + 1
+                    processToKill = OpenProcess(PROCESS_ALL_ACCESS, False, uProcess.th32ProcessID)
+                    If uProcess.th32ProcessID = MyProcess Then
+                       'MsgBox "hmmm" & MyProcess ' we never want to kill our own process...
+                    Else
+                        If checkForFolder = True Then ' only check the process actual run folder when killing an app from the dock
+                            procId = uProcess.th32ProcessID ' actual PID
+                            runningProcessFolder = getFolderNameFromPath(getExePathFromPID(procId))
+                            If LCase$(runningProcessFolder) = LCase$(folderName) Then
+                                ' checkAndKill = TerminateProcess(processToKill, ExitCode)
+                                ' Call CloseHandle(processToKill)
+                                checkAndKill = confirmEachKill(binaryName, procId, processToKill, confirmEachProcessKill, ExitCode)
+                            End If
+                        Else ' just go ahead and kill whatever process I say must go
+                            ' checkAndKill = TerminateProcess(processToKill, ExitCode)
+                            ' Call CloseHandle(processToKill)
+                            checkAndKill = confirmEachKill(binaryName, procId, processToKill, confirmEachProcessKill, ExitCode)
+                        End If
+                    End If
+            End If
+            RProcessFound = ProcessNext(hSnapshot, uProcess)
+            
+          Loop While RProcessFound
+          Call CloseHandle(hSnapshot)
+    End If
+
+
+   On Error GoTo 0
+   Exit Function
+
+checkAndKill_Error:
+
+    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure checkAndKill of Module Common"
+
+End Function
+
+
+
+'
+'---------------------------------------------------------------------------------------
+' Procedure : getFileNameFromPath
+' Author    : beededea
+' Date      : 01/06/2019
+' Purpose   : A function to getFileNameFromPath
+'
+'---------------------------------------------------------------------------------------
+'
+Public Function getFileNameFromPath(ByRef strFullPath As String) As String
+   On Error GoTo getFileNameFromPath_Error
+      
+   ' returns the remainder of the path from the final backslash which can be a file or a folder
+   If Not fFExists(strFullPath) Then ' tests to see if a file or a folder of the same name in the same location
+        getFileNameFromPath = ""    ' if a file does not exist then what remains must be a folder
+        Exit Function               ' if a file does exist get its name below
+   End If
+   getFileNameFromPath = Right$(strFullPath, Len(strFullPath) - InStrRev(strFullPath, "\"))
+
+   On Error GoTo 0
+   Exit Function
+
+getFileNameFromPath_Error:
+
+    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure getFileNameFromPath of Module Common"
+End Function
+
+'---------------------------------------------------------------------------------------
+' Procedure : getFolderNameFromPath
+' Author    : beededea
+' Date      : 11/07/2019
+' Purpose   : get the folder or directory path as a string not including the last backslash
+'---------------------------------------------------------------------------------------
+'
+Public Function getFolderNameFromPath(ByRef Path As String) As String
+
+   On Error GoTo getFolderNameFromPath_Error
+   'If debugflg = 1 Then debugLog "%" & "getFolderNameFromPath"
+
+    If InStrRev(Path, "\") = 0 Then
+        getFolderNameFromPath = vbNullString
+        Exit Function
+    End If
+    getFolderNameFromPath = Left$(Path, InStrRev(Path, "\") - 1)
+
+   On Error GoTo 0
+   Exit Function
+
+getFolderNameFromPath_Error:
+
+    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure getFolderNameFromPath of Module Common"
+End Function
+
+
+'---------------------------------------------------------------------------------------
+' Procedure : getExePathFromPID
+' Author    : beededea
+' Date      : 25/08/2020
+' Purpose   : getting the full path of a running process is not as easy as you'd expect
+'---------------------------------------------------------------------------------------
+'
+Public Function getExePathFromPID(ByVal idProc As Long) As String
+    Dim sBuf As String:  sBuf = vbNullString
+    Dim sChar As Long: sChar = 0
+    Dim useloop As Integer: useloop = 0
+    Dim hProcess As Long: hProcess = 0
+    
+    On Error GoTo getExePathFromPID_Error
+
+    hProcess = OpenProcess(PROCESS_QUERY_INFORMATION Or PROCESS_VM_READ, 0, idProc)
+    If hProcess Then
+        sBuf = String$(260, vbNullChar)
+        sChar = GetProcessImageFileName(hProcess, sBuf, 260)
+        If sChar Then
+            sBuf = NoNulls(sBuf)
+            ' this loop replaces the internal windows volume name with the legacy naming convention, ie. C:\, D:\ &c
+            For useloop = 1 To lstDevicesListCount
+                If InStr(1, sBuf, lstDevices(1, useloop)) > 0 Then
+                    sBuf = Replace(sBuf, lstDevices(1, useloop), Chr$(lstDevices(0, useloop)) & ":")
+                    Exit For
+                End If
+            Next useloop
+            getExePathFromPID = sBuf
+        End If
+        CloseHandle hProcess
+    End If
+
+   On Error GoTo 0
+   Exit Function
+
+getExePathFromPID_Error:
+
+    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure getExePathFromPID of Module common"
+End Function
+'---------------------------------------------------------------------------------------
+' Procedure : confirmEachKill
+' Author    : beededea
+' Date      : 20/12/2022
+' Purpose   : This routine is an analog of confirmEachKillPutWindowBehind. It is more or less identical and you should keep them in synch.
+'             This version does NOT have calls to routines that require additional API calls
+'             I could have used compile time references (#) to bypass these but it seemed more appropriate to create
+'             separate copy for DockSettings and Enhance Icon Settings to run that it would not share with the other utilities.
+'---------------------------------------------------------------------------------------
+'
+Public Function confirmEachKill(ByVal binaryName As String, ByVal procId As Long, ByVal processToKill As String, ByVal confirmEachProcessKill As Boolean, ByRef ExitCode As Long) As Boolean
+    Dim goAheadAndKill As Boolean: goAheadAndKill = False
+    Dim rmessage As String: rmessage = ""
+    Dim answer As VbMsgBoxResult: answer = vbNo
+    Dim a As Long
+
+    On Error GoTo confirmEachKill_Error
+
+    If confirmEachProcessKill = True Then
+        rmessage = "A matching process has been found. Kill this application? - " & binaryName & " with process ID " & procId
+        'nswer = MsgBox(rmessage, vbYesNo)
+        'answer = msgBoxA(rmessage, vbYesNo, "Killing this application", True, "confirmEachKill")
+        answer = MsgBox(rmessage, vbExclamation + vbYesNo)
+
+        If answer = vbNo Then
+            goAheadAndKill = False
+        Else
+            goAheadAndKill = True
+        End If
+    Else
+        goAheadAndKill = True
+    End If
+    
+    If goAheadAndKill = True Then
+        confirmEachKill = TerminateProcess(processToKill, ExitCode)
+        Call CloseHandle(processToKill)
+    End If
+
+    On Error GoTo 0
+    Exit Function
+
+confirmEachKill_Error:
+
+    With Err
+         If .Number <> 0 Then
+            MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure confirmEachKill of Module common"
+            Resume Next
+          End If
+    End With
+End Function
+
+
+'---------------------------------------------------------------------------------------
+' Procedure : NoNulls
+' Author    : beededea
+' Date      : 25/08/2020
+' Purpose   :
+'---------------------------------------------------------------------------------------
+'
+Public Function NoNulls(ByVal Strng As String) As String
+    Dim i As Integer: i = 0
+    On Error GoTo NoNulls_Error
+
+    If Len(Strng) > 0 Then
+        i = InStr(Strng, vbNullChar)
+        Select Case i
+            Case 0
+                NoNulls = Strng
+            Case 1
+                NoNulls = vbNullString
+            Case Else
+                NoNulls = Left$(Strng, i - 1)
+        End Select
+    End If
+
+   On Error GoTo 0
+   Exit Function
+
+NoNulls_Error:
+
+    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure NoNulls of Module common"
+End Function

@@ -346,13 +346,13 @@ Begin VB.Form panzerPrefs
             Width           =   3660
          End
          Begin VB.CheckBox chkGenStartup 
-            Caption         =   "Run the Earth Widget at Windows Startup *"
-            Height          =   225
+            Caption         =   "Put the Kill Widget on the desktop at Windows Startup *"
+            Height          =   450
             Left            =   2010
             TabIndex        =   92
             ToolTipText     =   "Check this box to enable the automatic start of the program when Windows is started."
-            Top             =   2520
-            Width           =   3555
+            Top             =   2505
+            Width           =   4545
          End
          Begin VB.CheckBox chkGaugeFunctions 
             Caption         =   "Ability to kill a Process *"
@@ -399,7 +399,7 @@ Begin VB.Form panzerPrefs
             Left            =   1140
             TabIndex        =   93
             Tag             =   "lblRefreshInterval"
-            Top             =   2520
+            Top             =   2610
             Width           =   1740
          End
          Begin VB.Label lblGeneral 
