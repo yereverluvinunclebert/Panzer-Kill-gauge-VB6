@@ -339,7 +339,7 @@ Private Sub initialiseGlobalVars()
     ' general
     PzEStartup = vbNullString
     PzEGaugeFunctions = vbNullString
-    PzEAnimationInterval = vbNullString
+'    PzEAnimationInterval = vbNullString
     
     ' config
     PzEEnableTooltips = vbNullString
@@ -485,7 +485,7 @@ Public Sub adjustMainControls()
     ' validate the inputs of any data from the input settings file
     Call validateInputs
     
-    BodyWidget.RotationSpeed = Val(PzEAnimationInterval)
+    'BodyWidget.RotationSpeed = Val(PzEAnimationInterval)
     BodyWidget.Zoom = Val(PzEGaugeSize) / 100
     BodyWidget.ZoomDirection = PzEScrollWheelDirection
     
@@ -495,11 +495,11 @@ Public Sub adjustMainControls()
     End If
     
     If PzEGaugeFunctions = "1" Then
-        BodyWidget.Rotating = True
+        'BodyWidget.Rotating = True
         menuForm.mnuSwitchOff.Checked = False
         menuForm.mnuTurnFunctionsOn.Checked = True
     Else
-        BodyWidget.Rotating = False
+        'BodyWidget.Rotating = False
         menuForm.mnuSwitchOff.Checked = True
         menuForm.mnuTurnFunctionsOn.Checked = False
     End If
@@ -587,7 +587,7 @@ Public Sub readSettingsFile(ByVal location As String, ByVal PzESettingsFile As S
         ' general
         PzEStartup = fGetINISetting(location, "startup", PzESettingsFile)
         PzEGaugeFunctions = fGetINISetting(location, "gaugeFunctions", PzESettingsFile)
-        PzEAnimationInterval = fGetINISetting(location, "animationInterval", PzESettingsFile)
+'        PzEAnimationInterval = fGetINISetting(location, "animationInterval", PzESettingsFile)
         
         ' configuration
         PzEEnableTooltips = fGetINISetting(location, "enableTooltips", PzESettingsFile)
@@ -671,7 +671,7 @@ Public Sub validateInputs()
             
         ' general
         If PzEGaugeFunctions = vbNullString Then PzEGaugeFunctions = "1" ' always turn
-        If PzEAnimationInterval = vbNullString Then PzEAnimationInterval = "130"
+        'If PzEAnimationInterval = vbNullString Then PzEAnimationInterval = "130"
         If PzEStartup = vbNullString Then PzEStartup = "1"
         
         ' Config

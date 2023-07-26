@@ -283,7 +283,7 @@ Private Const VER_PLATFORM_WIN32_NT = 2
 ' general
 Public PzEStartup As String
 Public PzEGaugeFunctions As String
-Public PzEAnimationInterval As String
+'Public PzEAnimationInterval As String
 'Public 'PzEWidgetSkew As String
 
 ' config

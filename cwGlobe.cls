@@ -53,14 +53,14 @@ Attribute W.VB_VarHelpID = -1
 Private WithEvents tmrRotate As cTimer
 Attribute tmrRotate.VB_VarHelpID = -1
 
-Private mRotationSpeed As Double
+'Private mRotationSpeed As Double
 Private mZoom As Double
 Private mZoomDirection As String
-Private mRotating As Boolean
+'Private mRotating As Boolean
 Private mLocked As Boolean
 Private mHidden As Boolean
 Private mOpacity As Double
-Private mWasRotating As Boolean
+'Private mWasRotating As Boolean
 
 ' property mRotationSpeed
 ' property mZoom
@@ -84,7 +84,8 @@ Private Sub Class_Initialize()
 
     Call initialiseVars
     
-    mRotationSpeed = 0: mZoom = 0
+    'mRotationSpeed = 0:
+    mZoom = 0
     surroundxo = 0: surroundyo = 10
     ringxo = 38: ringyo = 51
     switchFacesButtonxo = 585: switchFacesButtonyo = 267
@@ -106,7 +107,7 @@ Private Sub Class_Initialize()
              
         mZoom = 0.1 ' the Body size initially very small
         ZoomDirection = mZoomDirection
-    Set tmrRotate = New_c.Timer(mRotationSpeed, False)
+    'Set tmrRotate = New_c.Timer(mRotationSpeed, False)
 
    On Error GoTo 0
    Exit Sub
@@ -275,25 +276,25 @@ opacityGet_Error:
 
     MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure opacity of Class Module cwBody"
 End Property
-'---------------------------------------------------------------------------------------
-' Procedure : RotationSpeed
-' Author    : beededea
-' Date      : 17/05/2023
-' Purpose   :
-'---------------------------------------------------------------------------------------
+''---------------------------------------------------------------------------------------
+'' Procedure : RotationSpeed
+'' Author    : beededea
+'' Date      : 17/05/2023
+'' Purpose   :
+''---------------------------------------------------------------------------------------
+''
+'Public Property Get RotationSpeed() As Double
+'   On Error GoTo RotationSpeedGet_Error
 '
-Public Property Get RotationSpeed() As Double
-   On Error GoTo RotationSpeedGet_Error
-
-  RotationSpeed = mRotationSpeed
-
-   On Error GoTo 0
-   Exit Property
-
-RotationSpeedGet_Error:
-
-    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure RotationSpeed of Class Module cwBody"
-End Property
+'  RotationSpeed = mRotationSpeed
+'
+'   On Error GoTo 0
+'   Exit Property
+'
+'RotationSpeedGet_Error:
+'
+'    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure RotationSpeed of Class Module cwBody"
+'End Property
 '---------------------------------------------------------------------------------------
 ' Procedure : RotationSpeed
 ' Author    : beededea
@@ -301,19 +302,19 @@ End Property
 ' Purpose   :
 '---------------------------------------------------------------------------------------
 '
-Public Property Let RotationSpeed(ByVal newValue As Double)
-   On Error GoTo RotationSpeedLet_Error
-
-  If mRotationSpeed <> newValue Then mRotationSpeed = newValue Else Exit Property
-  If mRotationSpeed Then Set tmrRotate = New_c.Timer(mRotationSpeed, True) Else Set tmrRotate = Nothing
-
-   On Error GoTo 0
-   Exit Property
-
-RotationSpeedLet_Error:
-
-    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure RotationSpeed of Class Module cwBody"
-End Property
+'Public Property Let RotationSpeed(ByVal newValue As Double)
+'   On Error GoTo RotationSpeedLet_Error
+'
+'  If mRotationSpeed <> newValue Then mRotationSpeed = newValue Else Exit Property
+'  If mRotationSpeed Then Set tmrRotate = New_c.Timer(mRotationSpeed, True) Else Set tmrRotate = Nothing
+'
+'   On Error GoTo 0
+'   Exit Property
+'
+'RotationSpeedLet_Error:
+'
+'    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure RotationSpeed of Class Module cwBody"
+'End Property
 '---------------------------------------------------------------------------------------
 ' Procedure : Locked
 ' Author    : beededea
@@ -383,16 +384,16 @@ Public Property Let Hidden(ByVal newValue As Boolean)
 
     If mHidden <> newValue Then mHidden = newValue Else Exit Property
     If mHidden = True Then
-        If Rotating = True Then
-            WasRotating = True
-        Else
-            WasRotating = False
-        End If
-        Rotating = False
+'        If Rotating = True Then
+'            WasRotating = True
+'        Else
+'            WasRotating = False
+'        End If
+        'Rotating = False
         opacity = 0
         W.Refresh
     Else
-        If WasRotating = True Then Rotating = True
+        'If WasRotating = True Then Rotating = True
         opacity = Val(PzEOpacity) / 100
         
         W.Refresh
@@ -411,38 +412,38 @@ End Property
 ' Date      : 17/05/2023
 ' Purpose   :
 '---------------------------------------------------------------------------------------
+''
+'Public Property Get WasRotating() As Boolean
+'   On Error GoTo WasRotatingGet_Error
 '
-Public Property Get WasRotating() As Boolean
-   On Error GoTo WasRotatingGet_Error
-
-  WasRotating = mWasRotating
-
-   On Error GoTo 0
-   Exit Property
-
-WasRotatingGet_Error:
-
-    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure WasRotating of Class Module cwBody"
-End Property
-'---------------------------------------------------------------------------------------
-' Procedure : WasRotating
-' Author    : beededea
-' Date      : 17/05/2023
-' Purpose   :
-'---------------------------------------------------------------------------------------
+'  WasRotating = mWasRotating
 '
-Public Property Let WasRotating(ByVal newValue As Boolean)
-   On Error GoTo WasRotatingLet_Error
-
-    If mWasRotating <> newValue Then mWasRotating = newValue Else Exit Property
-
-   On Error GoTo 0
-   Exit Property
-
-WasRotatingLet_Error:
-
-    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure WasRotating of Class Module cwBody"
-End Property
+'   On Error GoTo 0
+'   Exit Property
+'
+'WasRotatingGet_Error:
+'
+'    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure WasRotating of Class Module cwBody"
+'End Property
+''---------------------------------------------------------------------------------------
+'' Procedure : WasRotating
+'' Author    : beededea
+'' Date      : 17/05/2023
+'' Purpose   :
+''---------------------------------------------------------------------------------------
+''
+'Public Property Let WasRotating(ByVal newValue As Boolean)
+'   On Error GoTo WasRotatingLet_Error
+'
+'    If mWasRotating <> newValue Then mWasRotating = newValue Else Exit Property
+'
+'   On Error GoTo 0
+'   Exit Property
+'
+'WasRotatingLet_Error:
+'
+'    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure WasRotating of Class Module cwBody"
+'End Property
 '---------------------------------------------------------------------------------------
 ' Procedure : Rotating
 ' Author    : beededea
@@ -450,42 +451,42 @@ End Property
 ' Purpose   :
 '---------------------------------------------------------------------------------------
 '
-Public Property Get Rotating() As Boolean
-   On Error GoTo RotatingGet_Error
-
-  Rotating = mRotating
-
-   On Error GoTo 0
-   Exit Property
-
-RotatingGet_Error:
-
-    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure Rotating of Class Module cwBody"
-End Property
-'---------------------------------------------------------------------------------------
-' Procedure : Rotating
-' Author    :
-' Date      : 09/05/2023
-' Purpose   :
-'---------------------------------------------------------------------------------------
+'Public Property Get Rotating() As Boolean
+'   On Error GoTo RotatingGet_Error
 '
-Public Property Let Rotating(ByVal newValue As Boolean)
-   On Error GoTo RotatingLet_Error
-
-  If mRotating <> newValue Then mRotating = newValue Else Exit Property
-    If mRotating Then
-        Set tmrRotate = New_c.Timer(RotationSpeed, True)
-    Else
-        Set tmrRotate = Nothing
-    End If
-
-   On Error GoTo 0
-   Exit Property
-
-RotatingLet_Error:
-
-    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in Property Rotating of Class Module cwBody"
-End Property ' the earth rotating flag
+'  Rotating = mRotating
+'
+'   On Error GoTo 0
+'   Exit Property
+'
+'RotatingGet_Error:
+'
+'    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure Rotating of Class Module cwBody"
+'End Property
+''---------------------------------------------------------------------------------------
+'' Procedure : Rotating
+'' Author    :
+'' Date      : 09/05/2023
+'' Purpose   :
+''---------------------------------------------------------------------------------------
+''
+'Public Property Let Rotating(ByVal newValue As Boolean)
+'   On Error GoTo RotatingLet_Error
+'
+'  If mRotating <> newValue Then mRotating = newValue Else Exit Property
+'    If mRotating Then
+'        Set tmrRotate = New_c.Timer(RotationSpeed, True)
+'    Else
+'        Set tmrRotate = Nothing
+'    End If
+'
+'   On Error GoTo 0
+'   Exit Property
+'
+'RotatingLet_Error:
+'
+'    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in Property Rotating of Class Module cwBody"
+'End Property ' the earth rotating flag
 '---------------------------------------------------------------------------------------
 ' Procedure : tmrRotate_Timer
 ' Author    :
@@ -493,26 +494,26 @@ End Property ' the earth rotating flag
 ' Purpose   :
 '---------------------------------------------------------------------------------------
 '
-Private Sub tmrRotate_Timer()
-   On Error GoTo tmrRotate_Timer_Error
-
-    If Rotating = False Then
-        Set tmrRotate = Nothing
-        Exit Sub
-    End If
-    killButtonCounter = killButtonCounter + 1
-    If killButtonCounter >= 36 Then
-      killButtonCounter = 1
-    End If
-    W.Refresh
-
-   On Error GoTo 0
-   Exit Sub
-
-tmrRotate_Timer_Error:
-
-    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure tmrRotate_Timer of Class Module cwBody"
-End Sub
+'Private Sub tmrRotate_Timer()
+'   On Error GoTo tmrRotate_Timer_Error
+'
+'    If Rotating = False Then
+'        Set tmrRotate = Nothing
+'        Exit Sub
+'    End If
+'    killButtonCounter = killButtonCounter + 1
+'    If killButtonCounter >= 36 Then
+'      killButtonCounter = 1
+'    End If
+'    W.Refresh
+'
+'   On Error GoTo 0
+'   Exit Sub
+'
+'tmrRotate_Timer_Error:
+'
+'    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure tmrRotate_Timer of Class Module cwBody"
+'End Sub
 '---------------------------------------------------------------------------------------
 ' Procedure : W_MouseWheel
 ' Author    : beededea

@@ -82,15 +82,26 @@ End Sub
 '---------------------------------------------------------------------------------------
 '
 Public Sub BodyForm_DblClick()
-  
+    Dim fileToPlay As String: fileToPlay = vbNullString
+    Dim answer As VbMsgBoxResult: answer = vbNo
+    
     On Error GoTo BodyForm_DblClick_Error
 
     If LTrim$(PzEDblClickCommand) = vbNullString Then Exit Sub
+    
+    fileToPlay = "ting.wav"
+    If PzEEnableSounds = "1" And fFExists(App.Path & "\resources\sounds\" & fileToPlay) Then
+        PlaySound App.Path & "\resources\sounds\" & fileToPlay, ByVal 0&, SND_FILENAME Or SND_ASYNC
+    End If
+
     If SHIFT_1 = True Then
         SHIFT_1 = False
         Call ShellExecute(fMain.BodyForm.hwnd, "Open", PzEOpenFile, vbNullString, App.Path, 1)
     Else
-        Call ShellExecute(fMain.BodyForm.hwnd, "Open", PzEDblClickCommand, vbNullString, App.Path, 1)
+        answer = MsgBox("Are you sure you want to kill this process? " & vbCr & "    " & PzEDblClickCommand & vbCr & " Do you wish to proceed? ", vbExclamation + vbYesNo)
+        If answer = vbYes Then
+            Call ShellExecute(fMain.BodyForm.hwnd, "Open", PzEDblClickCommand, vbNullString, App.Path, 1)
+        End If
     End If
 
     On Error GoTo 0
