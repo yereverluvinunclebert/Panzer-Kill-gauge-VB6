@@ -93,7 +93,7 @@ Tested on :
 
 Dependencies:
 
-A windows-alike o/s such as Windows XP, 7-11 or Apple Mac OSX 11.   
+A windows-alike o/s such as Windows XP, 7-11, Apple Mac OSX 11 with Wine, Linux with Wine.   
 
 Requires a PzKill Gauge folder in C:\Users\<user>\AppData\Roaming\ 
 eg: C:\Users\<user>\AppData\Roaming\PzKill Gauge
