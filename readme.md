@@ -7,16 +7,28 @@ dieselpunk fashion on your desktop. It can be resized and placed anywhere on
 your desktop. It uses minimal resources and helps give your desktop a 
 dieselpunk make-over. 
 
-This widgets functionality is limited as it is just a template for widgets yet
-to come, however, it can be increased in size, animation speed can be changed, 
-opacity/transparency may be set as to the users discretion. The widget can 
-also be made to hide for a pre-determined period.
+I use it to kill a wayward process. I used to run a lot of Yahoo Widgets and 
+occasionally the Konfabulator engine would get itself in a twist and start 
+continually dying/reloading. I had this exact widget on my desktop (written 
+in MS Jscript for the Xwidget engine) and whenever YWE did a funny I would 
+dblClick on the Kill button and YWE would die. When you are developing it is 
+not unsusual to create a rogue program that needs to be killed regularly. Use 
+this tool to do it.
+
+In amomgst the code is a binary that you will be able to use to install the 
+desktop widget. It is SETUP.EXE, when the program is ready I will create this 
+installer, until then this a work in progress.
+
+This widgets UI functionality is limited as I am using my simple template for 
+widgets yet to come. However, it can be increased in size, opacity/transparency 
+may be set as to the users discretion. The widget can also be made to hide for 
+a pre-determined period.
 
 Right-click on the widget to display the function menu, mouse hover over the 
 widget and press CTRL+mousewheel up/down to resize. It works well on Windows XP 
-to Windows 11.
+to Windows 11 as well as Linux and Mac os x with Wine.
 
-The Panzer Kill Gauge VB6 gauge is Alpha-grade software, under development, not yet 
+The Panzer Kill Gauge VB6 gauge is Beta-grade software, under development, not yet 
 ready to use on a production system - use at your own risk.
 
 This version was developed on Windows 7 using 32 bit VisualBasic 6 as a FOSS 
