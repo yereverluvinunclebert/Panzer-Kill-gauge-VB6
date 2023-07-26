@@ -7,6 +7,8 @@ dieselpunk fashion on your desktop. It can be resized and placed anywhere on
 your desktop. It uses minimal resources and helps give your desktop a 
 dieselpunk make-over. 
 
+![panzer-kill-help-750](https://github.com/yereverluvinunclebert/Panzer-Kill-gauge-VB6/assets/2788342/11505f09-61ff-48c9-9627-ed10fa7975ef)
+
 I use it to kill a wayward process. I used to run a lot of Yahoo Widgets and 
 occasionally the Konfabulator engine would get itself in a twist and start 
 continually dying/reloading. I had this exact widget on my desktop (written 
@@ -18,6 +20,8 @@ this tool to do it.
 In amomgst the code is a binary that you will be able to use to install the 
 desktop widget. It is SETUP.EXE, when the program is ready I will create this 
 installer, until then this a work in progress.
+
+![about](https://github.com/yereverluvinunclebert/Panzer-Kill-gauge-VB6/assets/2788342/a91e4fe4-ee6f-4f3a-8b75-9584b60012b0)
 
 This widgets UI functionality is limited as I am using my simple template for 
 widgets yet to come. However, it can be increased in size, opacity/transparency 
