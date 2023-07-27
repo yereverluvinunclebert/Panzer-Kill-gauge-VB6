@@ -679,7 +679,7 @@ Public Sub validateInputs()
         If PzEEnableBalloonTooltips = vbNullString Then PzEEnableBalloonTooltips = "1"
         If PzEShowTaskbar = vbNullString Then PzEShowTaskbar = "0"
         
-        If PzEGaugeSize = vbNullString Then PzEGaugeSize = "25"
+        If PzEGaugeSize = vbNullString Then PzEGaugeSize = "9"
         If PzEScrollWheelDirection = vbNullString Then PzEScrollWheelDirection = "up"
                
         ' fonts

@@ -1898,7 +1898,7 @@ Public Sub BodyForm_Unload() ' name follows VB6 standard naming convention
     sPutINISetting "Software\PzKill", "maximiseFormX", PzEMaximiseFormX, PzESettingsFile
     sPutINISetting "Software\PzKill", "maximiseFormY", PzEMaximiseFormY, PzESettingsFile
     
-    Call unloadAllForms
+    Call unloadAllForms(True)
 
     On Error GoTo 0
     Exit Sub
@@ -1920,7 +1920,7 @@ End Sub
 ' Purpose   : unload all VB6 and RC5 forms
 '---------------------------------------------------------------------------------------
 '
-Public Sub unloadAllForms()
+Public Sub unloadAllForms(ByVal endItAll As Boolean)
     
    On Error GoTo unloadAllForms_Error
 
@@ -1950,7 +1950,7 @@ Public Sub unloadAllForms()
     Set frmTimer = Nothing
     Set menuForm = Nothing
     
-    End
+    If endItAll = True Then End
 
    On Error GoTo 0
    Exit Sub
@@ -1972,7 +1972,7 @@ Public Sub reloadWidget()
     
     On Error GoTo reloadWidget_Error
     
-    Call unloadAllForms
+    Call unloadAllForms(False) ' unload forms but do not END
     
     ' this will call the routines as called by sub main() and initialise the program and RELOAD the RC5 forms.
     Call mainRoutine(True) ' sets the restart flag to avoid repriming the Rc5 message pump.
