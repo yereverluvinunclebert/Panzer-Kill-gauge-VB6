@@ -86,7 +86,7 @@ Elroy on VB forums for the balloon tooltips
 Harry Whitfield for his quality testing, brain stimulation and being an
 unwitting source of inspiration.
 
-Tested on :
+Tested on (with varying results, mostly good!) :
 
     ReactOS 0.4.14 32bit on virtualBox
     windows 7 professional 32bit on intel
@@ -96,6 +96,8 @@ Tested on :
     windows 10 home 64bit on intel
     windows 10 home 64bit on amd
     windows 11 64bit on intel
+    Open Suse with Wine
+    Mac os/x 10.14. Mojave with Wine
 
 Dependencies:
 
