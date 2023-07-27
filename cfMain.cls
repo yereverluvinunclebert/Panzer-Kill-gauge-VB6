@@ -62,6 +62,8 @@ Public Sub InitAndShowAsFreeForm(ByVal X As Long, ByVal Y As Long, Optional ByVa
     
     ' make the about form transparent
     aboutForm.WidgetRoot.BackColor = -1
+    aboutForm.IconImageKey = "frmIcon"
+
          
     ' create a new Body widget with a name and location, first step of that is to run Class_Initialize
     Set aboutWidget = aboutForm.Widgets.Add(New cwAbout, "about", 0, 0, 870, 870)
@@ -98,10 +100,11 @@ Public Sub BodyForm_DblClick()
         SHIFT_1 = False
         Call ShellExecute(fMain.BodyForm.hwnd, "Open", PzEOpenFile, vbNullString, App.Path, 1)
     Else
-        answer = MsgBox("Are you sure you want to kill this process? " & vbCr & "    " & PzEDblClickCommand & vbCr & " Do you wish to proceed? ", vbExclamation + vbYesNo)
-        If answer = vbYes Then
-             checkAndKill PzEDblClickCommand, False, False
-            'Call ShellExecute(fMain.BodyForm.hwnd, "Open", PzEDblClickCommand, vbNullString, App.Path, 1)
+        If Val(PzEGaugeFunctions) = 1 Then
+            answer = MsgBox("Are you sure you want to kill this process? " & vbCr & "    " & PzEDblClickCommand & vbCr & " Do you wish to proceed? ", vbExclamation + vbYesNo)
+            If answer = vbYes Then
+                 checkAndKill PzEDblClickCommand, False, False
+            End If
         End If
     End If
 

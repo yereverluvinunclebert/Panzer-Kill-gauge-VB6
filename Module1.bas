@@ -1949,6 +1949,8 @@ Public Sub unloadAllForms()
     Set frmLicence = Nothing
     Set frmTimer = Nothing
     Set menuForm = Nothing
+    
+    End
 
    On Error GoTo 0
    Exit Sub

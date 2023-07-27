@@ -20,7 +20,7 @@ Begin VB.Form helpForm
       ForeColor       =   &H80000008&
       Height          =   9135
       Left            =   0
-      Picture         =   "frmHelp.frx":164A
+      Picture         =   "frmHelp.frx":10CA
       ScaleHeight     =   9135
       ScaleWidth      =   11250
       TabIndex        =   0

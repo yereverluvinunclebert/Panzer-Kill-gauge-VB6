@@ -461,7 +461,7 @@ Private Sub addImagesToImageList()
     Cairo.ImageList.AddImage "bigReflection", App.Path & "\Resources\images\bigReflection.png"
     Cairo.ImageList.AddImage "windowReflection", App.Path & "\Resources\images\windowReflection.png"
     
-    Cairo.ImageList.AddImage "frmIcon", App.Path & "\Resources\images\Icon.png"
+    Cairo.ImageList.AddImage "frmIcon", App.Path & "\Resources\images\icon.png"
 
    On Error GoTo 0
    Exit Sub

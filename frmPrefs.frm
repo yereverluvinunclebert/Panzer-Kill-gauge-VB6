@@ -14,6 +14,98 @@ Begin VB.Form panzerPrefs
    ScaleWidth      =   8970
    StartUpPosition =   3  'Windows Default
    Visible         =   0   'False
+   Begin VB.Frame fraGeneral 
+      Caption         =   "General"
+      Height          =   3735
+      Left            =   240
+      TabIndex        =   52
+      Top             =   1200
+      Visible         =   0   'False
+      Width           =   7500
+      Begin VB.Frame fraGeneralInner 
+         BorderStyle     =   0  'None
+         Height          =   3015
+         Left            =   465
+         TabIndex        =   53
+         Top             =   300
+         Width           =   6600
+         Begin VB.TextBox txtDblClickCommand 
+            Height          =   315
+            Left            =   1995
+            TabIndex        =   142
+            ToolTipText     =   "Enter a Windows command for the gauge to operate when double-clicked."
+            Top             =   1215
+            Width           =   3660
+         End
+         Begin VB.CheckBox chkGenStartup 
+            Caption         =   "Put the Kill Widget on the desktop at Windows Startup *"
+            Height          =   450
+            Left            =   2010
+            TabIndex        =   92
+            ToolTipText     =   "Check this box to enable the automatic start of the program when Windows is started."
+            Top             =   2505
+            Width           =   4545
+         End
+         Begin VB.CheckBox chkGaugeFunctions 
+            Caption         =   "Ability to kill a Process *"
+            Height          =   225
+            Left            =   1995
+            TabIndex        =   54
+            ToolTipText     =   "When checked this box enables the spinning earth functionality. That's it!"
+            Top             =   180
+            Width           =   3405
+         End
+         Begin VB.Label lblDebug 
+            Caption         =   $"frmPrefs.frx":10CA
+            Height          =   675
+            Index           =   5
+            Left            =   2070
+            TabIndex        =   144
+            Tag             =   "lblSharedInputFileDesc"
+            Top             =   1725
+            Width           =   4410
+         End
+         Begin VB.Label lblDebug 
+            Caption         =   "DblClick Kill Process :"
+            Height          =   510
+            Index           =   1
+            Left            =   390
+            TabIndex        =   143
+            Tag             =   "lblPrefixString"
+            Top             =   1275
+            Width           =   1575
+         End
+         Begin VB.Label lblGeneral 
+            Caption         =   "Gauge Functions :"
+            Height          =   315
+            Index           =   6
+            Left            =   510
+            TabIndex        =   94
+            Top             =   165
+            Width           =   1320
+         End
+         Begin VB.Label lblGeneral 
+            Caption         =   "Auto Start :"
+            Height          =   375
+            Index           =   11
+            Left            =   1140
+            TabIndex        =   93
+            Tag             =   "lblRefreshInterval"
+            Top             =   2610
+            Width           =   1740
+         End
+         Begin VB.Label lblGeneral 
+            Caption         =   "When checked this box enables the process killing capability. That's it! *"
+            Height          =   660
+            Index           =   2
+            Left            =   2025
+            TabIndex        =   55
+            Tag             =   "lblEnableSoundsDesc"
+            Top             =   540
+            Width           =   3615
+         End
+      End
+   End
    Begin VB.Timer positionTimer 
       Interval        =   10000
       Left            =   1155
@@ -45,7 +137,7 @@ Begin VB.Form panzerPrefs
       Begin VB.Image imgAbout 
          Height          =   600
          Left            =   160
-         Picture         =   "frmPrefs.frx":10CA
+         Picture         =   "frmPrefs.frx":1163
          Stretch         =   -1  'True
          Top             =   225
          Width           =   600
@@ -53,7 +145,7 @@ Begin VB.Form panzerPrefs
       Begin VB.Image imgAboutClicked 
          Height          =   600
          Left            =   160
-         Picture         =   "frmPrefs.frx":1652
+         Picture         =   "frmPrefs.frx":16EB
          Stretch         =   -1  'True
          Top             =   225
          Width           =   600
@@ -78,7 +170,7 @@ Begin VB.Form panzerPrefs
       Begin VB.Image imgConfig 
          Height          =   600
          Left            =   165
-         Picture         =   "frmPrefs.frx":1B3D
+         Picture         =   "frmPrefs.frx":1BD6
          Stretch         =   -1  'True
          Top             =   225
          Width           =   600
@@ -86,7 +178,7 @@ Begin VB.Form panzerPrefs
       Begin VB.Image imgConfigClicked 
          Height          =   600
          Left            =   165
-         Picture         =   "frmPrefs.frx":211C
+         Picture         =   "frmPrefs.frx":21B5
          Stretch         =   -1  'True
          Top             =   225
          Width           =   600
@@ -110,7 +202,7 @@ Begin VB.Form panzerPrefs
       Begin VB.Image imgDevelopment 
          Height          =   600
          Left            =   160
-         Picture         =   "frmPrefs.frx":2617
+         Picture         =   "frmPrefs.frx":26B0
          Stretch         =   -1  'True
          Top             =   225
          Width           =   600
@@ -118,7 +210,7 @@ Begin VB.Form panzerPrefs
       Begin VB.Image imgDevelopmentClicked 
          Height          =   600
          Left            =   160
-         Picture         =   "frmPrefs.frx":2BCF
+         Picture         =   "frmPrefs.frx":2C68
          Stretch         =   -1  'True
          Top             =   225
          Width           =   600
@@ -143,7 +235,7 @@ Begin VB.Form panzerPrefs
       Begin VB.Image imgPosition 
          Height          =   600
          Left            =   160
-         Picture         =   "frmPrefs.frx":2F55
+         Picture         =   "frmPrefs.frx":2FEE
          Stretch         =   -1  'True
          Top             =   225
          Width           =   600
@@ -151,7 +243,7 @@ Begin VB.Form panzerPrefs
       Begin VB.Image imgPositionClicked 
          Height          =   600
          Left            =   160
-         Picture         =   "frmPrefs.frx":3526
+         Picture         =   "frmPrefs.frx":35BF
          Stretch         =   -1  'True
          Top             =   225
          Width           =   600
@@ -196,7 +288,7 @@ Begin VB.Form panzerPrefs
       Begin VB.Image imgSounds 
          Height          =   600
          Left            =   160
-         Picture         =   "frmPrefs.frx":38C4
+         Picture         =   "frmPrefs.frx":395D
          Stretch         =   -1  'True
          Top             =   225
          Width           =   600
@@ -204,7 +296,7 @@ Begin VB.Form panzerPrefs
       Begin VB.Image imgSoundsClicked 
          Height          =   600
          Left            =   160
-         Picture         =   "frmPrefs.frx":3E83
+         Picture         =   "frmPrefs.frx":3F1C
          Stretch         =   -1  'True
          Top             =   225
          Width           =   600
@@ -244,7 +336,7 @@ Begin VB.Form panzerPrefs
       Begin VB.Image imgWindow 
          Height          =   600
          Left            =   160
-         Picture         =   "frmPrefs.frx":42C2
+         Picture         =   "frmPrefs.frx":435B
          Stretch         =   -1  'True
          Top             =   225
          Width           =   600
@@ -252,7 +344,7 @@ Begin VB.Form panzerPrefs
       Begin VB.Image imgWindowClicked 
          Height          =   600
          Left            =   160
-         Picture         =   "frmPrefs.frx":478C
+         Picture         =   "frmPrefs.frx":4825
          Stretch         =   -1  'True
          Top             =   225
          Width           =   600
@@ -276,7 +368,7 @@ Begin VB.Form panzerPrefs
       Begin VB.Image imgFonts 
          Height          =   600
          Left            =   180
-         Picture         =   "frmPrefs.frx":4B38
+         Picture         =   "frmPrefs.frx":4BD1
          Stretch         =   -1  'True
          Top             =   195
          Width           =   600
@@ -284,7 +376,7 @@ Begin VB.Form panzerPrefs
       Begin VB.Image imgFontsClicked 
          Height          =   600
          Left            =   180
-         Picture         =   "frmPrefs.frx":508E
+         Picture         =   "frmPrefs.frx":5127
          Stretch         =   -1  'True
          Top             =   195
          Width           =   600
@@ -308,7 +400,7 @@ Begin VB.Form panzerPrefs
       Begin VB.Image imgGeneral 
          Height          =   600
          Left            =   165
-         Picture         =   "frmPrefs.frx":5527
+         Picture         =   "frmPrefs.frx":55C0
          Stretch         =   -1  'True
          Top             =   225
          Width           =   600
@@ -316,102 +408,10 @@ Begin VB.Form panzerPrefs
       Begin VB.Image imgGeneralClicked 
          Height          =   600
          Left            =   165
-         Picture         =   "frmPrefs.frx":5983
+         Picture         =   "frmPrefs.frx":5A1C
          Stretch         =   -1  'True
          Top             =   240
          Width           =   600
-      End
-   End
-   Begin VB.Frame fraGeneral 
-      Caption         =   "General"
-      Height          =   3735
-      Left            =   240
-      TabIndex        =   52
-      Top             =   1200
-      Visible         =   0   'False
-      Width           =   7500
-      Begin VB.Frame fraGeneralInner 
-         BorderStyle     =   0  'None
-         Height          =   3015
-         Left            =   465
-         TabIndex        =   53
-         Top             =   300
-         Width           =   6600
-         Begin VB.TextBox txtDblClickCommand 
-            Height          =   315
-            Left            =   1995
-            TabIndex        =   142
-            ToolTipText     =   "Enter a Windows command for the gauge to operate when double-clicked."
-            Top             =   1215
-            Width           =   3660
-         End
-         Begin VB.CheckBox chkGenStartup 
-            Caption         =   "Put the Kill Widget on the desktop at Windows Startup *"
-            Height          =   450
-            Left            =   2010
-            TabIndex        =   92
-            ToolTipText     =   "Check this box to enable the automatic start of the program when Windows is started."
-            Top             =   2505
-            Width           =   4545
-         End
-         Begin VB.CheckBox chkGaugeFunctions 
-            Caption         =   "Ability to kill a Process *"
-            Height          =   225
-            Left            =   1995
-            TabIndex        =   54
-            ToolTipText     =   "When checked this box enables the spinning earth functionality. That's it!"
-            Top             =   180
-            Width           =   3405
-         End
-         Begin VB.Label lblDebug 
-            Caption         =   $"frmPrefs.frx":5C56
-            Height          =   675
-            Index           =   5
-            Left            =   2070
-            TabIndex        =   144
-            Tag             =   "lblSharedInputFileDesc"
-            Top             =   1725
-            Width           =   4410
-         End
-         Begin VB.Label lblDebug 
-            Caption         =   "DblClick Kill Process"
-            Height          =   510
-            Index           =   1
-            Left            =   465
-            TabIndex        =   143
-            Tag             =   "lblPrefixString"
-            Top             =   1275
-            Width           =   1545
-         End
-         Begin VB.Label lblGeneral 
-            Caption         =   "Gauge Functions :"
-            Height          =   315
-            Index           =   6
-            Left            =   510
-            TabIndex        =   94
-            Top             =   165
-            Width           =   1320
-         End
-         Begin VB.Label lblGeneral 
-            Caption         =   "Auto Start :"
-            Height          =   375
-            Index           =   11
-            Left            =   1140
-            TabIndex        =   93
-            Tag             =   "lblRefreshInterval"
-            Top             =   2610
-            Width           =   1740
-         End
-         Begin VB.Label lblGeneral 
-            Caption         =   "When checked this box enables the process killing capability. That's it! *"
-            Height          =   660
-            Index           =   2
-            Left            =   2025
-            TabIndex        =   55
-            Tag             =   "lblEnableSoundsDesc"
-            Top             =   540
-            Width           =   3615
-         End
       End
    End
    Begin VB.Frame fraSounds 
@@ -1565,9 +1565,9 @@ Begin VB.Form panzerPrefs
          End
          Begin VB.ComboBox cmbDebug 
             Height          =   315
-            ItemData        =   "frmPrefs.frx":762A
+            ItemData        =   "frmPrefs.frx":7629
             Left            =   1530
-            List            =   "frmPrefs.frx":762C
+            List            =   "frmPrefs.frx":762B
             Style           =   2  'Dropdown List
             TabIndex        =   56
             ToolTipText     =   "Choose to set debug mode."
@@ -3437,7 +3437,7 @@ Public Sub setPrefsTooltips()
         imgGeneralClicked.ToolTipText = "Opens the general tab"
         lblPosition(6).ToolTipText = "Tablets only. Don't fiddle with this unless you really know what you are doing. Here you can choose whether this Pz Kill widget is hidden by default in either landscape or portrait mode or not at all. This option allows you to have certain widgets that do not obscure the screen in either landscape or portrait. If you accidentally set it so you can't find your widget on screen then change the setting here to NONE."
         chkGenStartup.ToolTipText = "Check this box to enable the automatic start of the program when Windows is started."
-        chkGaugeFunctions.ToolTipText = "When checked this box enables the spinning earth functionality. Any adjustment takes place instantly. "
+        chkGaugeFunctions.ToolTipText = "When checked this box enables the ability to kill the named process. Any adjustment takes place instantly. "
         'sliAnimationInterval.ToolTipText = "Adjust to make the animation smooth or choppy. Any adjustment in the interval takes place instantly. Lower values are smoother but the smoother it runs the more CPU it uses."
         txtPortraitYoffset.ToolTipText = "Field to hold the vertical offset for the widget position in portrait mode."
         txtPortraitHoffset.ToolTipText = "Field to hold the horizontal offset for the widget position in portrait mode."
@@ -3449,7 +3449,7 @@ Public Sub setPrefsTooltips()
         cmbAspectHidden.ToolTipText = " Here you can choose whether the widget is hidden by default in either landscape or portrait mode or not at all. This allows you to have certain widgets that do not obscure the screen in one mode or another. If you accidentally set it so you can't find it on screen then change the setting here to none."
         chkEnableSounds.ToolTipText = "Check this box to enable or disable all of the sounds used during any animation on the main screen."
         btnDefaultEditor.ToolTipText = "Click to select the .vbp file to edit the program - You need to have access to the source!"
-        txtDblClickCommand.ToolTipText = "Enter a Windows command for the gauge to operate when double-clicked."
+        txtDblClickCommand.ToolTipText = "Enter a process name for the gauge to kill when double-clicked."
         btnOpenFile.ToolTipText = "Click to select a particular file for the gauge to run or open when double-clicked."
         txtOpenFile.ToolTipText = "Enter a particular file for the gauge to run or open when double-clicked."
         cmbDebug.ToolTipText = "Choose to set debug mode."

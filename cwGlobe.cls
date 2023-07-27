@@ -621,7 +621,6 @@ Public Sub Draw(ByVal CC As cCairoContext, ByVal dx_Aligned As Single, ByVal dy_
     CC.RenderSurfaceContent "windowReflection", windowReflectionxo, windowReflectionyo, , , , mOpacity
     CC.RenderSurfaceContent "Glow", 25, 33, 555, 555, , mOpacity
 
-
    On Error GoTo 0
    Exit Sub
 

@@ -584,6 +584,10 @@ Private Sub mnuSwitchOff_Click()
     PzEGaugeFunctions = "0"
     sPutINISetting "Software\PzKill", "gaugeFunctions", PzEGaugeFunctions, PzESettingsFile
 
+    If panzerPrefs.Visible = True Then
+        panzerPrefs.chkGaugeFunctions.Value = 0
+    End If
+    
    On Error GoTo 0
    Exit Sub
 
@@ -615,6 +619,11 @@ Private Sub mnuTurnFunctionsOn_Click()
     
     PzEGaugeFunctions = "1"
     sPutINISetting "Software\PzKill", "gaugeFunctions", PzEGaugeFunctions, PzESettingsFile
+
+    If panzerPrefs.Visible = True Then
+        panzerPrefs.chkGaugeFunctions.Value = 1
+    End If
+
 
    On Error GoTo 0
    Exit Sub
