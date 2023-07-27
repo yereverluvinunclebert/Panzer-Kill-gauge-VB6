@@ -7,6 +7,8 @@ dieselpunk fashion on your desktop. It can be resized and placed anywhere on
 your desktop. It uses minimal resources and helps give your desktop a
 dieselpunk make-over.
 
+I keep it in very small size, top right on my screen, ready for use.
+
 I use it to kill a wayward process. I used to run a lot of Yahoo Widgets and
 occasionally the Konfabulator engine would get itself in a twist and start
 continually dying/reloading. I had this exact widget on my desktop (written
