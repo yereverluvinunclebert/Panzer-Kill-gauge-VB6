@@ -320,7 +320,7 @@ End Property
 Public Property Get PressedOpacity() As Double
    On Error GoTo PressedOpacityGet_Error
 
-  PressedOpacity = mPressedOpacity
+    PressedOpacity = mPressedOpacity
 
    On Error GoTo 0
    Exit Property
