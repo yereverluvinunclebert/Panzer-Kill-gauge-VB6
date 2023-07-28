@@ -60,6 +60,10 @@ Private mZoomDirection As String
 Private mLocked As Boolean
 Private mHidden As Boolean
 Private mOpacity As Double
+Private mPressedOpacity As Double
+
+Private mKillButtonOpacity As Double
+Private mKillButtonPressedOpacity As Double
 'Private mWasRotating As Boolean
 
 ' property mRotationSpeed
@@ -99,6 +103,9 @@ Private Sub Class_Initialize()
     tickSwitchxo = 500: tickSwitchyo = 59
     killButtonxo = 20: killButtonyo = 30
     killButtonPressedxo = 20: killButtonPressedyo = 30
+    
+    mKillButtonOpacity = 1
+    mKillButtonPressedOpacity = 0
     
     killButtonCounter = 1
       
@@ -345,7 +352,8 @@ End Property
 Public Property Let Locked(ByVal newValue As Boolean)
    On Error GoTo LockedLet_Error
 
-  If mLocked <> newValue Then mLocked = newValue Else Exit Property
+   If mLocked <> newValue Then mLocked = newValue Else Exit Property
+
 
    On Error GoTo 0
    Exit Property
@@ -353,6 +361,52 @@ Public Property Let Locked(ByVal newValue As Boolean)
 LockedLet_Error:
 
     MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure Locked of Class Module cwBody"
+End Property
+'---------------------------------------------------------------------------------------
+' Procedure : PressedOpacity
+' Author    : beededea
+' Date      : 17/05/2023
+' Purpose   :
+'---------------------------------------------------------------------------------------
+'
+Public Property Get PressedOpacity() As Double
+   On Error GoTo PressedOpacityGet_Error
+
+  PressedOpacity = mPressedOpacity
+
+   On Error GoTo 0
+   Exit Property
+
+PressedOpacityGet_Error:
+
+    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure PressedOpacity of Class Module cwBody"
+End Property
+'---------------------------------------------------------------------------------------
+' Procedure : PressedOpacity
+' Author    : beededea
+' Date      : 17/05/2023
+' Purpose   :
+'---------------------------------------------------------------------------------------
+'
+Public Property Let PressedOpacity(ByVal newValue As Double)
+    On Error GoTo PressedOpacityLet_Error
+
+    If mPressedOpacity <> newValue Then mPressedOpacity = newValue Else Exit Property
+
+'    If mPressedOpacity = True Then
+'        mKillButtonOpacity = 0
+'        mKillButtonPressedOpacityOpacity = 1
+'    Else
+'        mKillButtonOpacity = 1
+'        mKillButtonPressedOpacityOpacity = 0
+'    End If
+'
+   On Error GoTo 0
+   Exit Property
+
+PressedOpacityLet_Error:
+
+    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure PressedOpacity of Class Module cwBody"
 End Property
 '---------------------------------------------------------------------------------------
 ' Procedure : Hidden
@@ -453,7 +507,12 @@ Private Sub W_MouseDown(Button As Integer, Shift As Integer, ByVal X As Single, 
         Call menuForm.PopupMenu(menuForm.mnuMainMenu)
     Else
         If PzEIgnoreMouse = "1" Then Exit Sub
+        
         ' do whatever you want with a mouseDown here, not doing anything at the moment but we will...
+        
+        PressedOpacity = mOpacity
+        W.Refresh
+        
     End If
 
 
@@ -464,6 +523,80 @@ W_MouseDown_Error:
 
     MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure W_MouseDown of Class Module cwBody"
 End Sub
+
+''---------------------------------------------------------------------------------------
+'' Procedure : W_MouseDown
+'' Author    :
+'' Date      : 09/05/2023
+'' Purpose   :
+''---------------------------------------------------------------------------------------
+''
+'Private Sub W_MouseUp(Button As Integer, Shift As Integer, ByVal X As Single, ByVal Y As Single)
+'   On Error GoTo W_MouseUp_Error
+'
+'    If Locked = True Then Exit Sub
+'
+'    ' no point in saving when prefs are visible.
+'    If panzerPrefs.IsVisible = False Then ' checks without activating the form - important!.
+'       PzEMaximiseFormX = Str$(W.Left) ' saving in pixels
+'       PzEMaximiseFormY = Str$(W.Top)
+'
+'       sPutINISetting "Software\PzKill", "maximiseFormX", PzEMaximiseFormX, PzESettingsFile
+'       sPutINISetting "Software\PzKill", "maximiseFormY", PzEMaximiseFormY, PzESettingsFile
+'    End If
+'
+'    If PzEIgnoreMouse = "1" Then Exit Sub
+'    ' do whatever you want with a mouseDown here, not doing anything at the moment but we will...
+'
+'    mKillButtonOpacity = 1
+'    mKillButtonPressedOpacity = 0
+'
+'   On Error GoTo 0
+'   Exit Sub
+'
+'W_MouseUp_Error:
+'
+'    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure W_MouseDown of Class Module cwBody"
+'End Sub
+
+'
+''---------------------------------------------------------------------------------------
+'' Procedure : BodyForm_MouseUp
+'' Author    : beededea
+'' Date      : 05/05/2023
+'' Purpose   : save the form x,y position when ever the Body/form is dragged
+''---------------------------------------------------------------------------------------
+''
+'Private Sub BodyForm_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+'    On Error GoTo BodyForm_MouseUp_Error
+'
+'    If BodyWidget.Locked = True Then Exit Sub
+'
+'    ' no point in saving when prefs are visible.
+'    If panzerPrefs.IsVisible = False Then ' checks without activating the form - important!.
+'       PzEMaximiseFormX = Str$(BodyForm.Left) ' saving in pixels
+'       PzEMaximiseFormY = Str$(BodyForm.Top)
+'
+'       sPutINISetting "Software\PzKill", "maximiseFormX", PzEMaximiseFormX, PzESettingsFile
+'       sPutINISetting "Software\PzKill", "maximiseFormY", PzEMaximiseFormY, PzESettingsFile
+'    End If
+'
+'    'Static x0, y0: If Button Then BodyForm.Move BodyForm.Left + X - x0, BodyForm.Top + Y - y0 Else x0 = X: y0 = Y
+'
+'    On Error GoTo 0
+'    Exit Sub
+'
+'BodyForm_MouseUp_Error:
+'
+'    With Err
+'         If .Number <> 0 Then
+'            MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure BodyForm_MouseUp of Class Module cfMain"
+'            Resume Next
+'          End If
+'    End With
+'End Sub
+
+
 '---------------------------------------------------------------------------------------
 ' Procedure : W_Paint
 ' Author    : beededea
@@ -503,7 +636,7 @@ Public Sub Draw(ByVal CC As cCairoContext, ByVal dx_Aligned As Single, ByVal dy_
     CC.Save
    
     CC.RenderSurfaceContent "killButton", killButtonxo, killButtonyo, , , , mOpacity
-    CC.RenderSurfaceContent "killButtonPressed", killButtonPressedxo, killButtonPressedyo, , , , mOpacity
+    CC.RenderSurfaceContent "killButtonPressed", killButtonPressedxo, killButtonPressedyo, , , , mPressedOpacity
     CC.RenderSurfaceContent "surround", surroundxo, surroundyo, , , , mOpacity
     CC.RenderSurfaceContent "switchFacesButton", switchFacesButtonxo, switchFacesButtonyo, , , , mOpacity
     CC.RenderSurfaceContent "startButton", startButtonxo, startButtonyo, , , , mOpacity

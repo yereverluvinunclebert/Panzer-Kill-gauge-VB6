@@ -92,6 +92,9 @@ Public Sub BodyForm_DblClick()
 
     If LTrim$(PzEDblClickCommand) = vbNullString Then Exit Sub
     
+    BodyWidget.PressedOpacity = Val(PzEOpacity) / 100
+    BodyForm.Refresh
+        
     fileToPlay = "ting.wav"
     If PzEEnableSounds = "1" And fFExists(App.Path & "\resources\sounds\" & fileToPlay) Then
         PlaySound App.Path & "\resources\sounds\" & fileToPlay, ByVal 0&, SND_FILENAME Or SND_ASYNC
@@ -108,6 +111,9 @@ Public Sub BodyForm_DblClick()
             End If
         End If
     End If
+    
+    BodyWidget.PressedOpacity = 0
+    BodyForm.Refresh
 
     On Error GoTo 0
     Exit Sub
@@ -171,7 +177,7 @@ BodyForm_KeyDown_Error:
 
     MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure BodyForm_KeyDown of Class Module cfMain"
 End Sub
-'
+
 '---------------------------------------------------------------------------------------
 ' Procedure : BodyForm_MouseUp
 ' Author    : beededea
@@ -181,20 +187,21 @@ End Sub
 '
 Private Sub BodyForm_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
     On Error GoTo BodyForm_MouseUp_Error
-    
+
     If BodyWidget.Locked = True Then Exit Sub
-    
+
     ' no point in saving when prefs are visible.
     If panzerPrefs.IsVisible = False Then ' checks without activating the form - important!.
        PzEMaximiseFormX = Str$(BodyForm.Left) ' saving in pixels
        PzEMaximiseFormY = Str$(BodyForm.Top)
-       
+
        sPutINISetting "Software\PzKill", "maximiseFormX", PzEMaximiseFormX, PzESettingsFile
        sPutINISetting "Software\PzKill", "maximiseFormY", PzEMaximiseFormY, PzESettingsFile
     End If
-    
-    'Static x0, y0: If Button Then BodyForm.Move BodyForm.Left + X - x0, BodyForm.Top + Y - y0 Else x0 = X: y0 = Y
 
+    BodyWidget.PressedOpacity = 0
+    BodyForm.Refresh
+    
     On Error GoTo 0
     Exit Sub
 
