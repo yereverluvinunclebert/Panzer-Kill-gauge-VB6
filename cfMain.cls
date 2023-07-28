@@ -62,9 +62,10 @@ Public Sub InitAndShowAsFreeForm(ByVal X As Long, ByVal Y As Long, Optional ByVa
     
     ' make the about form transparent
     aboutForm.WidgetRoot.BackColor = -1
+    
+    ' set the form icon
     aboutForm.IconImageKey = "frmIcon"
 
-         
     ' create a new Body widget with a name and location, first step of that is to run Class_Initialize
     Set aboutWidget = aboutForm.Widgets.Add(New cwAbout, "about", 0, 0, 870, 870)
 
@@ -121,11 +122,6 @@ BodyForm_DblClick_Error:
     End With
 End Sub
 
- 
-'Private Sub BodyForm_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
-'        'If pinClicked = True Then MsgBox "X = " & x & " Y = " & y & " pinClicked = " & pinClicked
-'
-'End Sub
 
 '---------------------------------------------------------------------------------------
 ' Procedure : BodyForm_MouseMove

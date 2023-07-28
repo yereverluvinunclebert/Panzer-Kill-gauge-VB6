@@ -44,6 +44,8 @@ Private tickSwitchxo As Integer
 Private tickSwitchyo As Integer
 Private killButtonxo As Integer
 Private killButtonyo  As Integer
+Private killButtonPressedxo As Integer
+Private killButtonPressedyo  As Integer
 Private killButtonCounter As Integer
 
 Private WithEvents W As cWidgetBase
@@ -96,6 +98,7 @@ Private Sub Class_Initialize()
     helpButtonxo = 500: helpButtonyo = 516
     tickSwitchxo = 500: tickSwitchyo = 59
     killButtonxo = 20: killButtonyo = 30
+    killButtonPressedxo = 20: killButtonPressedyo = 30
     
     killButtonCounter = 1
       
@@ -138,7 +141,7 @@ Private Sub initialiseVars() ' set all vars to zero
     helpButtonxo = 0: helpButtonyo = 0
     tickSwitchxo = 0: tickSwitchyo = 0
     killButtonxo = 0: killButtonyo = 0
-    
+    killButtonPressedxo = 0: killButtonPressedyo = 0
     killButtonCounter = 0
 
     On Error GoTo 0
@@ -404,114 +407,7 @@ HiddenLet_Error:
 
     MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure Hidden of Class Module cwBody"
 End Property
-'---------------------------------------------------------------------------------------
-' Procedure : WasRotating
-' Author    : beededea
-' Date      : 17/05/2023
-' Purpose   :
-'---------------------------------------------------------------------------------------
-''
-'Public Property Get WasRotating() As Boolean
-'   On Error GoTo WasRotatingGet_Error
-'
-'  WasRotating = mWasRotating
-'
-'   On Error GoTo 0
-'   Exit Property
-'
-'WasRotatingGet_Error:
-'
-'    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure WasRotating of Class Module cwBody"
-'End Property
-''---------------------------------------------------------------------------------------
-'' Procedure : WasRotating
-'' Author    : beededea
-'' Date      : 17/05/2023
-'' Purpose   :
-''---------------------------------------------------------------------------------------
-''
-'Public Property Let WasRotating(ByVal newValue As Boolean)
-'   On Error GoTo WasRotatingLet_Error
-'
-'    If mWasRotating <> newValue Then mWasRotating = newValue Else Exit Property
-'
-'   On Error GoTo 0
-'   Exit Property
-'
-'WasRotatingLet_Error:
-'
-'    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure WasRotating of Class Module cwBody"
-'End Property
-'---------------------------------------------------------------------------------------
-' Procedure : Rotating
-' Author    : beededea
-' Date      : 17/05/2023
-' Purpose   :
-'---------------------------------------------------------------------------------------
-'
-'Public Property Get Rotating() As Boolean
-'   On Error GoTo RotatingGet_Error
-'
-'  Rotating = mRotating
-'
-'   On Error GoTo 0
-'   Exit Property
-'
-'RotatingGet_Error:
-'
-'    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure Rotating of Class Module cwBody"
-'End Property
-''---------------------------------------------------------------------------------------
-'' Procedure : Rotating
-'' Author    :
-'' Date      : 09/05/2023
-'' Purpose   :
-''---------------------------------------------------------------------------------------
-''
-'Public Property Let Rotating(ByVal newValue As Boolean)
-'   On Error GoTo RotatingLet_Error
-'
-'  If mRotating <> newValue Then mRotating = newValue Else Exit Property
-'    If mRotating Then
-'        Set tmrRotate = New_c.Timer(RotationSpeed, True)
-'    Else
-'        Set tmrRotate = Nothing
-'    End If
-'
-'   On Error GoTo 0
-'   Exit Property
-'
-'RotatingLet_Error:
-'
-'    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in Property Rotating of Class Module cwBody"
-'End Property ' the earth rotating flag
-'---------------------------------------------------------------------------------------
-' Procedure : tmrRotate_Timer
-' Author    :
-' Date      : 09/05/2023
-' Purpose   :
-'---------------------------------------------------------------------------------------
-'
-'Private Sub tmrRotate_Timer()
-'   On Error GoTo tmrRotate_Timer_Error
-'
-'    If Rotating = False Then
-'        Set tmrRotate = Nothing
-'        Exit Sub
-'    End If
-'    killButtonCounter = killButtonCounter + 1
-'    If killButtonCounter >= 36 Then
-'      killButtonCounter = 1
-'    End If
-'    W.Refresh
-'
-'   On Error GoTo 0
-'   Exit Sub
-'
-'tmrRotate_Timer_Error:
-'
-'    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure tmrRotate_Timer of Class Module cwBody"
-'End Sub
+
 '---------------------------------------------------------------------------------------
 ' Procedure : W_MouseWheel
 ' Author    : beededea
@@ -607,6 +503,7 @@ Public Sub Draw(ByVal CC As cCairoContext, ByVal dx_Aligned As Single, ByVal dy_
     CC.Save
    
     CC.RenderSurfaceContent "killButton", killButtonxo, killButtonyo, , , , mOpacity
+    CC.RenderSurfaceContent "killButtonPressed", killButtonPressedxo, killButtonPressedyo, , , , mOpacity
     CC.RenderSurfaceContent "surround", surroundxo, surroundyo, , , , mOpacity
     CC.RenderSurfaceContent "switchFacesButton", switchFacesButtonxo, switchFacesButtonyo, , , , mOpacity
     CC.RenderSurfaceContent "startButton", startButtonxo, startButtonyo, , , , mOpacity
