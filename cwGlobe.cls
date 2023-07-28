@@ -53,27 +53,19 @@ Attribute W.VB_VarHelpID = -1
 Private WithEvents tmrRotate As cTimer
 Attribute tmrRotate.VB_VarHelpID = -1
 
-'Private mRotationSpeed As Double
 Private mZoom As Double
 Private mZoomDirection As String
-'Private mRotating As Boolean
 Private mLocked As Boolean
 Private mHidden As Boolean
 Private mOpacity As Double
 Private mPressedOpacity As Double
 
-Private mKillButtonOpacity As Double
-Private mKillButtonPressedOpacity As Double
-'Private mWasRotating As Boolean
-
-' property mRotationSpeed
 ' property mZoom
 ' property mZoomDirection
-' property mRotating
 ' property mLocked
 ' property mHidden
 ' property mOpacity
-' property mWasRotating
+' property mPressedOpacity
  
 '---------------------------------------------------------------------------------------
 ' Procedure : Class_Initialize
@@ -88,7 +80,6 @@ Private Sub Class_Initialize()
 
     Call initialiseVars
     
-    'mRotationSpeed = 0:
     mZoom = 0
     surroundxo = 0: surroundyo = 10
     ringxo = 38: ringyo = 51
@@ -103,10 +94,6 @@ Private Sub Class_Initialize()
     tickSwitchxo = 500: tickSwitchyo = 59
     killButtonxo = 20: killButtonyo = 30
     killButtonPressedxo = 20: killButtonPressedyo = 30
-    
-    mKillButtonOpacity = 1
-    mKillButtonPressedOpacity = 0
-    
     killButtonCounter = 1
       
     Set W = Cairo.WidgetBase '<- this is required in each cwImplementation...
@@ -115,7 +102,6 @@ Private Sub Class_Initialize()
              
         mZoom = 0.1 ' the Body size initially very small
         ZoomDirection = mZoomDirection
-    'Set tmrRotate = New_c.Timer(mRotationSpeed, False)
 
    On Error GoTo 0
    Exit Sub
@@ -284,45 +270,7 @@ opacityGet_Error:
 
     MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure opacity of Class Module cwBody"
 End Property
-''---------------------------------------------------------------------------------------
-'' Procedure : RotationSpeed
-'' Author    : beededea
-'' Date      : 17/05/2023
-'' Purpose   :
-''---------------------------------------------------------------------------------------
-''
-'Public Property Get RotationSpeed() As Double
-'   On Error GoTo RotationSpeedGet_Error
-'
-'  RotationSpeed = mRotationSpeed
-'
-'   On Error GoTo 0
-'   Exit Property
-'
-'RotationSpeedGet_Error:
-'
-'    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure RotationSpeed of Class Module cwBody"
-'End Property
-'---------------------------------------------------------------------------------------
-' Procedure : RotationSpeed
-' Author    : beededea
-' Date      : 10/05/2023
-' Purpose   :
-'---------------------------------------------------------------------------------------
-'
-'Public Property Let RotationSpeed(ByVal newValue As Double)
-'   On Error GoTo RotationSpeedLet_Error
-'
-'  If mRotationSpeed <> newValue Then mRotationSpeed = newValue Else Exit Property
-'  If mRotationSpeed Then Set tmrRotate = New_c.Timer(mRotationSpeed, True) Else Set tmrRotate = Nothing
-'
-'   On Error GoTo 0
-'   Exit Property
-'
-'RotationSpeedLet_Error:
-'
-'    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure RotationSpeed of Class Module cwBody"
-'End Property
+
 '---------------------------------------------------------------------------------------
 ' Procedure : Locked
 ' Author    : beededea
@@ -393,14 +341,6 @@ Public Property Let PressedOpacity(ByVal newValue As Double)
 
     If mPressedOpacity <> newValue Then mPressedOpacity = newValue Else Exit Property
 
-'    If mPressedOpacity = True Then
-'        mKillButtonOpacity = 0
-'        mKillButtonPressedOpacityOpacity = 1
-'    Else
-'        mKillButtonOpacity = 1
-'        mKillButtonPressedOpacityOpacity = 0
-'    End If
-'
    On Error GoTo 0
    Exit Property
 
@@ -439,18 +379,11 @@ Public Property Let Hidden(ByVal newValue As Boolean)
 
     If mHidden <> newValue Then mHidden = newValue Else Exit Property
     If mHidden = True Then
-'        If Rotating = True Then
-'            WasRotating = True
-'        Else
-'            WasRotating = False
-'        End If
-        'Rotating = False
+
         opacity = 0
         W.Refresh
     Else
-        'If WasRotating = True Then Rotating = True
         opacity = Val(PzEOpacity) / 100
-        
         W.Refresh
     End If
 
@@ -507,9 +440,7 @@ Private Sub W_MouseDown(Button As Integer, Shift As Integer, ByVal X As Single, 
         Call menuForm.PopupMenu(menuForm.mnuMainMenu)
     Else
         If PzEIgnoreMouse = "1" Then Exit Sub
-        
-        ' do whatever you want with a mouseDown here, not doing anything at the moment but we will...
-        
+               
         PressedOpacity = mOpacity
         W.Refresh
         
@@ -524,77 +455,6 @@ W_MouseDown_Error:
     MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure W_MouseDown of Class Module cwBody"
 End Sub
 
-''---------------------------------------------------------------------------------------
-'' Procedure : W_MouseDown
-'' Author    :
-'' Date      : 09/05/2023
-'' Purpose   :
-''---------------------------------------------------------------------------------------
-''
-'Private Sub W_MouseUp(Button As Integer, Shift As Integer, ByVal X As Single, ByVal Y As Single)
-'   On Error GoTo W_MouseUp_Error
-'
-'    If Locked = True Then Exit Sub
-'
-'    ' no point in saving when prefs are visible.
-'    If panzerPrefs.IsVisible = False Then ' checks without activating the form - important!.
-'       PzEMaximiseFormX = Str$(W.Left) ' saving in pixels
-'       PzEMaximiseFormY = Str$(W.Top)
-'
-'       sPutINISetting "Software\PzKill", "maximiseFormX", PzEMaximiseFormX, PzESettingsFile
-'       sPutINISetting "Software\PzKill", "maximiseFormY", PzEMaximiseFormY, PzESettingsFile
-'    End If
-'
-'    If PzEIgnoreMouse = "1" Then Exit Sub
-'    ' do whatever you want with a mouseDown here, not doing anything at the moment but we will...
-'
-'    mKillButtonOpacity = 1
-'    mKillButtonPressedOpacity = 0
-'
-'   On Error GoTo 0
-'   Exit Sub
-'
-'W_MouseUp_Error:
-'
-'    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure W_MouseDown of Class Module cwBody"
-'End Sub
-
-'
-''---------------------------------------------------------------------------------------
-'' Procedure : BodyForm_MouseUp
-'' Author    : beededea
-'' Date      : 05/05/2023
-'' Purpose   : save the form x,y position when ever the Body/form is dragged
-''---------------------------------------------------------------------------------------
-''
-'Private Sub BodyForm_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
-'    On Error GoTo BodyForm_MouseUp_Error
-'
-'    If BodyWidget.Locked = True Then Exit Sub
-'
-'    ' no point in saving when prefs are visible.
-'    If panzerPrefs.IsVisible = False Then ' checks without activating the form - important!.
-'       PzEMaximiseFormX = Str$(BodyForm.Left) ' saving in pixels
-'       PzEMaximiseFormY = Str$(BodyForm.Top)
-'
-'       sPutINISetting "Software\PzKill", "maximiseFormX", PzEMaximiseFormX, PzESettingsFile
-'       sPutINISetting "Software\PzKill", "maximiseFormY", PzEMaximiseFormY, PzESettingsFile
-'    End If
-'
-'    'Static x0, y0: If Button Then BodyForm.Move BodyForm.Left + X - x0, BodyForm.Top + Y - y0 Else x0 = X: y0 = Y
-'
-'    On Error GoTo 0
-'    Exit Sub
-'
-'BodyForm_MouseUp_Error:
-'
-'    With Err
-'         If .Number <> 0 Then
-'            MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure BodyForm_MouseUp of Class Module cfMain"
-'            Resume Next
-'          End If
-'    End With
-'End Sub
 
 
 '---------------------------------------------------------------------------------------
