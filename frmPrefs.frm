@@ -3184,9 +3184,25 @@ End Sub
 
 
 
+'---------------------------------------------------------------------------------------
+' Procedure : imgGeneral_Click
+' Author    : beededea
+' Date      : 28/07/2023
+' Purpose   :
+'---------------------------------------------------------------------------------------
+'
 Private Sub imgGeneral_Click()
+   On Error GoTo imgGeneral_Click_Error
+
     imgGeneral.Visible = False
     imgGeneralClicked.Visible = True
+
+   On Error GoTo 0
+   Exit Sub
+
+imgGeneral_Click_Error:
+
+    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure imgGeneral_Click of Form panzerPrefs"
 End Sub
 
 Private Sub imgGeneral_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
@@ -3195,25 +3211,57 @@ End Sub
 
 
 
+'---------------------------------------------------------------------------------------
+' Procedure : lblGitHub_dblClick
+' Author    : beededea
+' Date      : 28/07/2023
+' Purpose   :
+'---------------------------------------------------------------------------------------
+'
 Private Sub lblGitHub_dblClick()
     Dim answer As VbMsgBoxResult: answer = vbNo
     
+   On Error GoTo lblGitHub_dblClick_Error
+
     answer = MsgBox("This option opens a browser window and take you straight to Github. Proceed?", vbExclamation + vbYesNo)
     If answer = vbYes Then
        Call ShellExecute(Me.hwnd, "Open", "https://github.com/yereverluvinunclebert/Panzer-Kill-gauge-VB6", vbNullString, App.Path, 1)
     End If
+
+   On Error GoTo 0
+   Exit Sub
+
+lblGitHub_dblClick_Error:
+
+    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure lblGitHub_dblClick of Form panzerPrefs"
 End Sub
 
 Private Sub lblGitHub_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
     lblGitHub.ForeColor = &H8000000D
 End Sub
 
+'---------------------------------------------------------------------------------------
+' Procedure : txtAboutText_MouseDown
+' Author    : beededea
+' Date      : 28/07/2023
+' Purpose   :
+'---------------------------------------------------------------------------------------
+'
 Private Sub txtAboutText_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+   On Error GoTo txtAboutText_MouseDown_Error
+
     If Button = vbRightButton Then
         txtAboutText.Enabled = False
         txtAboutText.Enabled = True
         Me.PopupMenu prefsMnuPopmenu, vbPopupMenuRightButton
     End If
+
+   On Error GoTo 0
+   Exit Sub
+
+txtAboutText_MouseDown_Error:
+
+    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure txtAboutText_MouseDown of Form panzerPrefs"
 End Sub
 
 Private Sub txtAboutText_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
@@ -3306,10 +3354,26 @@ Private Sub sliGaugeSize_Change()
     BodyWidget.Zoom = sliGaugeSize.Value / 100
 End Sub
 
+'---------------------------------------------------------------------------------------
+' Procedure : sliOpacity_Change
+' Author    : beededea
+' Date      : 28/07/2023
+' Purpose   :
+'---------------------------------------------------------------------------------------
+'
 Private Sub sliOpacity_Change()
+   On Error GoTo sliOpacity_Change_Error
+
     btnSave.Enabled = True ' enable the save button
     BodyWidget.opacity = sliOpacity.Value / 100
     PzEOpacity = LTrim$(Str$(sliOpacity.Value))
+
+   On Error GoTo 0
+   Exit Sub
+
+sliOpacity_Change_Error:
+
+    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure sliOpacity_Change of Form panzerPrefs"
 End Sub
 
 Private Sub sliOpacity_Click()
@@ -3317,12 +3381,28 @@ Private Sub sliOpacity_Click()
 End Sub
 
 
+'---------------------------------------------------------------------------------------
+' Procedure : Form_MouseDown
+' Author    : beededea
+' Date      : 28/07/2023
+' Purpose   :
+'---------------------------------------------------------------------------------------
+'
 Private Sub Form_MouseDown(ByRef Button As Integer, ByRef Shift As Integer, ByRef X As Single, ByRef Y As Single)
+   On Error GoTo Form_MouseDown_Error
+
     If Button = 2 Then
 
         Me.PopupMenu prefsMnuPopmenu, vbPopupMenuRightButton
         
     End If
+
+   On Error GoTo 0
+   Exit Sub
+
+Form_MouseDown_Error:
+
+    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure Form_MouseDown of Form panzerPrefs"
 End Sub
 
 'Private Sub fraEmail_MouseDown(ByRef Button As Integer, ByRef Shift As Integer, ByRef x As Single, ByRef y As Single)

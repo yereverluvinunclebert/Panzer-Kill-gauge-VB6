@@ -126,7 +126,7 @@ Public aboutWidget As cwAbout
 ' Summary:
 '
 '           The program is quite simple but forms the structure for other similar programs yet to come. These
-'           will be funcxtional replicas of the graphical Steam/Dieselpunk javascript widgets I previously built using the
+'           will be functional replicas of the graphical Steam/Dieselpunk javascript widgets I previously built using the
 '           Yahoo widget engine.
 '
 '           This program is a mix of native VB6 forms and controls and 3rd party additions.
