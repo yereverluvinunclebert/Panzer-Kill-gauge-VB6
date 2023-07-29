@@ -41,8 +41,12 @@ to Windows 11 as well as Linux and Mac os x with Wine.
 The Panzer Kill Gauge VB6 gauge is Beta-grade software, under development, not yet
 ready to use on a production system - use at your own risk.
 
+![killbuttonmenu01](https://github.com/yereverluvinunclebert/Panzer-Kill-gauge-VB6/assets/2788342/48db2772-feef-4789-a3db-0b217042fcd3)
+
 This version was developed on Windows 7 using 32 bit VisualBasic 6 as a FOSS
 project creating a WoW64 widget for the desktop.
+
+![Licence](https://github.com/yereverluvinunclebert/Panzer-Kill-gauge-VB6/assets/2788342/db31cc9d-8fa7-457e-9e76-529b0371432c)
 
 It is open source to allow easy configuration, bug-fixing, enhancement and
 community contribution towards free-and-useful VB6 utilities that can be created
@@ -57,6 +61,8 @@ find here on Deviantart: https://www.deviantart.com/yereverluvinuncleber/gallery
 I do hope you enjoy using this utility and others. Your own software
 enhancements and contributions will be gratefully received if you choose to
 contribute.
+
+![prefsGeneral02](https://github.com/yereverluvinunclebert/Panzer-Kill-gauge-VB6/assets/2788342/2e724c8c-c243-4b9a-95ed-4b43154a1a93)
 
 CREDITS:
 
@@ -176,3 +182,6 @@ permission. In all other non-commercial cases I require a credit to the
 original artist using my name or one of my pseudonyms and a link to my site.
 With regard to the commercial use of incorporated images, permission and a
 licence would need to be obtained from the original owner and creator, ie. me.
+
+![killButtonFullScreen02](https://github.com/yereverluvinunclebert/Panzer-Kill-gauge-VB6/assets/2788342/30616201-98bc-4c31-b676-00d25ea8243f)
+
