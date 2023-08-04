@@ -255,7 +255,7 @@ Public Sub mainRoutine(ByVal restart As Boolean)
     Call checkLicenceState
 
     ' initialise and create the main forms on the current display
-    Call createFormOnCurrentDisplay
+    Call createStandardFormsOnCurrentDisplay
     
     ' place the form at the saved location
     Call makeVisibleFormElements
@@ -837,27 +837,27 @@ setHidingTime_Error:
 End Sub
 
 '---------------------------------------------------------------------------------------
-' Procedure : createFormOnCurrentDisplay
+' Procedure : createStandardFormsOnCurrentDisplay
 ' Author    : beededea
 ' Date      : 07/05/2023
 ' Purpose   :
 '---------------------------------------------------------------------------------------
 '
-Private Sub createFormOnCurrentDisplay()
-    On Error GoTo createFormOnCurrentDisplay_Error
+Private Sub createStandardFormsOnCurrentDisplay()
+    On Error GoTo createStandardFormsOnCurrentDisplay_Error
 
     With New_c.Displays(1) 'get the current Display
-      fMain.InitAndShowAsFreeForm .WorkLeft, .WorkTop, 1000, 1000, "Panzer Kill Gauge"
+      fMain.initAndShowStandardForms .WorkLeft, .WorkTop, 1000, 1000, "Panzer Kill Gauge"
     End With
 
     On Error GoTo 0
     Exit Sub
 
-createFormOnCurrentDisplay_Error:
+createStandardFormsOnCurrentDisplay_Error:
 
     With Err
          If .Number <> 0 Then
-            MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure createFormOnCurrentDisplay of Module modMain"
+            MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure createStandardFormsOnCurrentDisplay of Module modMain"
             Resume Next
           End If
     End With
