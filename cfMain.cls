@@ -192,11 +192,7 @@ Private Sub BodyForm_MouseUp(Button As Integer, Shift As Integer, X As Single, Y
 
     ' no point in saving when prefs are visible.
     If panzerPrefs.IsVisible = False Then ' checks without activating the form - important!.
-       PzEMaximiseFormX = Str$(BodyForm.Left) ' saving in pixels
-       PzEMaximiseFormY = Str$(BodyForm.Top)
-
-       sPutINISetting "Software\PzKill", "maximiseFormX", PzEMaximiseFormX, PzESettingsFile
-       sPutINISetting "Software\PzKill", "maximiseFormY", PzEMaximiseFormY, PzESettingsFile
+        Call savePosition
     End If
 
     BodyWidget.PressedOpacity = 0

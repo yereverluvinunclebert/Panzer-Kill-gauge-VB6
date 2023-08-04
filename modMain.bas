@@ -486,7 +486,6 @@ Public Sub adjustMainControls()
     ' validate the inputs of any data from the input settings file
     Call validateInputs
     
-    'BodyWidget.RotationSpeed = Val(PzEAnimationInterval)
     BodyWidget.Zoom = Val(PzEGaugeSize) / 100
     BodyWidget.ZoomDirection = PzEScrollWheelDirection
     

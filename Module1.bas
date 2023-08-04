@@ -1611,6 +1611,35 @@ ChangeToolTipWidgetDefaultSettings_Error:
     MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure ChangeToolTipWidgetDefaultSettings of Module Module1"
 End Sub
 
+
+'---------------------------------------------------------------------------------------
+' Procedure : savePosition
+' Author    : beededea
+' Date      : 04/08/2023
+' Purpose   :
+'---------------------------------------------------------------------------------------
+'
+Public Sub savePosition()
+
+   On Error GoTo savePosition_Error
+
+    PzEMaximiseFormX = Str$(fMain.BodyForm.Left) ' saving in pixels
+    PzEMaximiseFormY = Str$(fMain.BodyForm.Top)
+   
+    PzEGaugeSize = LTrim$(Str$(BodyWidget.Zoom * 100))
+    
+    sPutINISetting "Software\PzKill", "maximiseFormX", PzEMaximiseFormX, PzESettingsFile
+    sPutINISetting "Software\PzKill", "maximiseFormY", PzEMaximiseFormY, PzESettingsFile
+    sPutINISetting "Software\PzKill", "gaugeSize", PzEGaugeSize, PzESettingsFile
+    
+   On Error GoTo 0
+   Exit Sub
+
+savePosition_Error:
+
+    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure savePosition of Module Module1"
+    
+End Sub
 '---------------------------------------------------------------------------------------
 ' Procedure : makeVisibleFormElements
 ' Author    : beededea
@@ -1895,11 +1924,7 @@ Public Sub BodyForm_Unload() ' name follows VB6 standard naming convention
     
     On Error GoTo Form_Unload_Error
     
-    PzEMaximiseFormX = Str$(fMain.BodyForm.Left) ' saving in pixels
-    PzEMaximiseFormY = Str$(fMain.BodyForm.Top)
-    
-    sPutINISetting "Software\PzKill", "maximiseFormX", PzEMaximiseFormX, PzESettingsFile
-    sPutINISetting "Software\PzKill", "maximiseFormY", PzEMaximiseFormY, PzESettingsFile
+    Call savePosition
     
     Call unloadAllForms(True)
 
