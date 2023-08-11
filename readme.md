@@ -107,7 +107,12 @@ Tested on (with varying results, mostly good!) :
 
 Dependencies:
 
-A windows-alike o/s such as Windows XP, 7-11, Apple Mac OSX 11 with Wine, Linux with Wine.
+o A windows-alike o/s such as Windows XP, 7-11, Apple Mac OSX 11 with Wine, Linux with Wine.
+
+
+o Microsoft VB6 IDE installed with its runtime components. The program runs without any additional Microsoft OCX components, just the basic controls that ship with VB6.
+
+![vb6-logo](https://github.com/yereverluvinunclebert/Panzer-Kill-gauge-VB6/assets/2788342/b5aa8d72-0171-48f5-bce6-d74f6a29c7d5)
 
 Requires a PzKill Gauge folder in C:\Users\<user>\AppData\Roaming\
 eg: C:\Users\<user>\AppData\Roaming\PzKill Gauge
