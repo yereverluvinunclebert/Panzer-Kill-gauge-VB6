@@ -2034,16 +2034,19 @@ Public Sub makeProgramPreferencesAvailable()
     
         If panzerPrefs.WindowState = vbMinimized Then
             panzerPrefs.WindowState = vbNormal
-            'Call readPrefsPosition
+            Call readPrefsPosition
         End If
-                ' set the current position of the utility according to previously stored positions
+        
+        ' set the current position of the utility according to previously stored positions
 
         If panzerPrefs.WindowState = vbNormal Then
         
             Call readPrefsPosition
             
-            If ((fMain.BodyForm.Left + fMain.BodyForm.Width) * screenTwipsPerPixelX) + 200 + panzerPrefs.Width > screenWidthTwips Then
-                panzerPrefs.Left = (fMain.BodyForm.Left * screenTwipsPerPixelX) - (panzerPrefs.Width + 200)
+            If panzerPrefs.Left = 0 Then
+                If ((fMain.BodyForm.Left + fMain.BodyForm.Width) * screenTwipsPerPixelX) + 200 + panzerPrefs.Width > screenWidthTwips Then
+                    panzerPrefs.Left = (fMain.BodyForm.Left * screenTwipsPerPixelX) - (panzerPrefs.Width + 200)
+                End If
             End If
             
             If panzerPrefs.Left < 0 Then panzerPrefs.Left = 0
