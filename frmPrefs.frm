@@ -2545,7 +2545,7 @@ Private Sub btnSave_Click()
     PzEShowTaskbar = LTrim$(Str$(chkShowTaskbar.Value))
     
     PzEGaugeSize = LTrim$(Str$(sliGaugeSize.Value))
-    PzEScrollWheelDirection = cmbScrollWheelDirection.List(cmbScrollWheelDirection.ListIndex)
+    PzEScrollWheelDirection = LTrim$(cmbScrollWheelDirection.ListIndex)
     
     ' general
     PzEGaugeFunctions = LTrim$(Str$(chkGaugeFunctions.Value))

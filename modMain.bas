@@ -680,7 +680,7 @@ Public Sub validateInputs()
         If PzEShowTaskbar = vbNullString Then PzEShowTaskbar = "0"
         
         If PzEGaugeSize = vbNullString Then PzEGaugeSize = "9"
-        If PzEScrollWheelDirection = vbNullString Then PzEScrollWheelDirection = "up"
+        If PzEScrollWheelDirection = vbNullString Then PzEScrollWheelDirection = "1"
                
         ' fonts
         If PzEPrefsFont = vbNullString Then PzEPrefsFont = "times new roman" 'prefsFont", PzESettingsFile)
