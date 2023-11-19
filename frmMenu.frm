@@ -235,7 +235,7 @@ Private Sub mnuEditWidget_Click()
         execStatus = ShellExecute(Me.hwnd, "open", editorPath, vbNullString, vbNullString, 1)
         If execStatus <= 32 Then MsgBox "Attempt to open the IDE for this widget failed."
     Else
-        MsgBox "Having a bit of a problem opening an IDE for this widgt - " & editorPath & " It doesn't seem to have a valid working directory set.", "Panzer Kill Gauge Confirmation Message", vbOKOnly + vbExclamation
+        MsgBox "Having a bit of a problem opening an IDE for this widget - " & editorPath & " It doesn't seem to have a valid working directory set."
         'MessageBox Me.hWnd, "Having a bit of a problem opening a folder for that command - " & sCommand & " It doesn't seem to have a valid working directory set.", "Panzer Kill Gauge Confirmation Message", vbOKOnly + vbExclamation
     End If
 
@@ -357,10 +357,12 @@ Private Sub mnuLockWidget_Click()
         mnuLockWidget.Checked = False
         PzEPreventDragging = "0"
         BodyWidget.Locked = False
+        panzerPrefs.chkPreventDragging.Value = 0
     Else
         mnuLockWidget.Checked = True
         BodyWidget.Locked = 1
         PzEPreventDragging = "1"
+        panzerPrefs.chkPreventDragging.Value = 1
     End If
 
     sPutINISetting "Software\PzKill", "preventDragging", PzEPreventDragging, PzESettingsFile
