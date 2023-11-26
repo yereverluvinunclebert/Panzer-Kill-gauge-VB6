@@ -416,6 +416,8 @@ Private Sub W_MouseWheel(ByVal MouseKeys As Long, ByVal Rotation As Long, ByVal 
             Zoom = Zoom + 0.02 * LineOffset
         End If
         PzEGaugeSize = LTrim$(Str$(BodyWidget.Zoom * 100)) ' store the value dynamically
+        If panzerPrefs.IsVisible = True Then panzerPrefs.sliGaugeSize = Val(PzEGaugeSize)
+        
     End Select
 
    On Error GoTo 0
