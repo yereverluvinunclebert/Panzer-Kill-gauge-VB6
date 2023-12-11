@@ -374,6 +374,10 @@ Public PzEFirstTimeRun  As String
 ' General storage variables declared
 Public PzESettingsDir As String
 Public PzESettingsFile As String
+
+Public PzETrinketsDir      As String
+Public PzETrinketsFile      As String
+
 Public PzEMaximiseFormX As String
 Public PzEMaximiseFormY As String
 Public PzELastSelectedTab As String
